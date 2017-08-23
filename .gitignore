@@ -331,3 +331,7 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
+#Perso
+*.ilk
+*.pdb
+*.log
