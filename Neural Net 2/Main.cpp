@@ -12,7 +12,7 @@ void main(){
 	int formato[5]={3,2,2,1};
 	double entradas[]={1,3};
 
-	Red red(formato)
+	Red red(formato);
 	red.entradas(entradas);
 
 	red.imprime();
