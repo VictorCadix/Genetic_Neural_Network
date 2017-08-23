@@ -1,9 +1,0 @@
-﻿  Red.cpp
-  Neurona.cpp
-  Main.cpp
-c:\users\victor\documents\visual studio 2017\projects\neural_network_github\neural net 2\main.cpp(10): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
-c:\users\victor\documents\visual studio 2017\projects\neural_network_github\neural net 2\main.cpp(19): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\conio.h(452): note: voir la déclaration de 'getch'
-  Génération de code en cours...
-  Neural Net 2.vcxproj -> C:\Users\Victor\Documents\Visual Studio 2017\Projects\Neural_Network_github\Debug\Neural Net 2.exe
-  Neural Net 2.vcxproj -> C:\Users\Victor\Documents\Visual Studio 2017\Projects\Neural_Network_github\Debug\Neural Net 2.pdb (Partial PDB)
