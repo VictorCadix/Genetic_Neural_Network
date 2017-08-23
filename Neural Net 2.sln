@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Neural Net 2", "Neural Net 2\Neural Net 2.vcxproj", "{CCC48D9E-6688-4640-AECC-796B1410EFCE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCC48D9E-6688-4640-AECC-796B1410EFCE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CCC48D9E-6688-4640-AECC-796B1410EFCE}.Debug|Win32.Build.0 = Debug|Win32
+		{CCC48D9E-6688-4640-AECC-796B1410EFCE}.Release|Win32.ActiveCfg = Release|Win32
+		{CCC48D9E-6688-4640-AECC-796B1410EFCE}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
