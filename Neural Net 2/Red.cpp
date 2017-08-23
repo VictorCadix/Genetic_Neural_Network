@@ -7,7 +7,7 @@ Red::Red(int *formato_in){
 	nCapas=formato[0];
 	cout<<"Red con "<<nCapas<<" capas"<<endl;
 	
-	/*for (int c=0; c<nCapas; c++){
+/*	for (int c=0; c<nCapas; c++){
 		for (int n=0; n<formato[c+1]; n++){
 			neuronas = new Neurona(c,n);
 		}

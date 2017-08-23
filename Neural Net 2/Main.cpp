@@ -9,7 +9,7 @@ using namespace std;
 void main(){
 	srand (time(NULL));
 
-	int formato[5]={3,2,2,1};
+	int formato[]={3,2,2,1};
 	double entradas[]={1,3};
 
 	Red red(formato);
