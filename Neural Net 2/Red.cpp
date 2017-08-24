@@ -37,7 +37,7 @@ Red::Red(int *structure_in) {
 	weights = new double **[nLayers-1];
 	for (int i = 0; i < nLayers-1; i++) {
 		weights[i] = new double*[structure[i+1]];
-		for (int j = 0; j < structure[1]; j++) {
+		for (int j = 0; j < structure[i+1]; j++) {
 			weights[i][j] = new double[structure[i+2]];
 		}
 	}

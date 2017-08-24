@@ -9,7 +9,7 @@ using namespace std;
 void main(){
 	srand (time(NULL));
 
-	int structure[]={3,2,2,1};
+	int structure[]={3,2,3,1};
 	double input[]={1,3};
 
 	Red red(structure);
