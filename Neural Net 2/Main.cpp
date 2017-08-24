@@ -9,12 +9,12 @@ using namespace std;
 void main(){
 	srand (time(NULL));
 
-	int formato[]={3,2,2,1};
-	double entradas[]={1,3};
+	int structure[]={3,2,2,1};
+	double input[]={1,3};
 
-	Red red(formato);
-	red.entradas(entradas);
+	Red red(structure);
+	red.inputs(input);
 
-	red.imprime();
+	red.print();
 	getch();
 }

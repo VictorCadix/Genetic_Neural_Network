@@ -6,19 +6,19 @@
 
 using namespace std;
 
-typedef	vector <Neurona> Capa; 
+typedef	vector <Neurona> Layer; 
 
 class Red{
-	int nCapas;
+	int nLayers;
 	int nNeuronas;
-	int *formato;
+	int *structure;
 	
-	vector <Capa> Capas;
+	vector <Layer> Layers;
 
 public:
 	//Red();
 	Red(int *formato);
-	void entradas(double *in);
-	void imprime();
+	void inputs(double *in);
+	void print();
 };
 #endif
