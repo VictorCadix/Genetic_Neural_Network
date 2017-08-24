@@ -12,12 +12,13 @@ class Red{
 	int nLayers;
 	int nNeuronas;
 	int *structure;
+	double ***weights;
 	
 	vector <Layer> Layers;
 
 public:
 	//Red();
-	Red(int *formato);
+	Red(int *structure_in);
 	void inputs(double *in);
 	void print();
 };
