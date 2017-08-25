@@ -7,11 +7,7 @@ Red::Red(int *structure_in) {
 	this->nLayers = structure[0];
 	cout << "Net with " << this->nLayers << " layers" << endl;
 
-	/*	for (int c=0; c<nCapas; c++){
-			for (int n=0; n<formato[c+1]; n++){
-				neuronas = new Neurona(c,n);
-			}
-		}*/
+	// Creation du reséau
 
 	for (int c = 0; c < this->nLayers; c++) {
 		this->layers.push_back(Layer());
@@ -24,16 +20,7 @@ Red::Red(int *structure_in) {
 	}
 
 	//Weights initialization
-	/*
-	weights = new double *[structure[1]];
-	for (int i=0; i<structure[1]; i++)
-		weights[i] = new double[structure[2]];
-
-	for (int i = 0; i < structure[1]; i++) {
-		for (int j = 0; j < structure[2]; j++)
-			weights[i][j] = i + j; // changer i+j par rand ou similaire
-	}
-	*/
+	
 	this->weights = new double **[nLayers-1];
 	for (int i = 0; i < this->nLayers-1; i++) {
 		this->weights[i] = new double*[structure[i+1]];
