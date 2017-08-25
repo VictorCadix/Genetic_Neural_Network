@@ -3,9 +3,9 @@
 using namespace std;
 
 Red::Red(int *structure_in) {
-	structure = structure_in;
-	nLayers = structure[0];
-	cout << "Net with " << nLayers << " layers" << endl;
+	this->structure = structure_in;
+	this->nLayers = structure[0];
+	cout << "Net with " << this->nLayers << " layers" << endl;
 
 	/*	for (int c=0; c<nCapas; c++){
 			for (int n=0; n<formato[c+1]; n++){
@@ -13,13 +13,13 @@ Red::Red(int *structure_in) {
 			}
 		}*/
 
-	for (int c = 0; c < nLayers; c++) {
-		Layers.push_back(Layer());
-		for (int n = 0; n < structure[c + 1]; n++) {
+	for (int c = 0; c < this->nLayers; c++) {
+		this->Layers.push_back(Layer());
+		for (int n = 0; n < this->structure[c + 1]; n++) {
 			if (c != 0)
-				Layers.back().push_back(Neurona(c, n, structure[c]));
+				this->Layers.back().push_back(Neurona(c, n, structure[c]));
 			else //input neuron
-				Layers.back().push_back(Neurona(c, n, 0));
+				this->Layers.back().push_back(Neurona(c, n, 0));
 		}
 	}
 
@@ -34,18 +34,18 @@ Red::Red(int *structure_in) {
 			weights[i][j] = i + j; // changer i+j par rand ou similaire
 	}
 	*/
-	weights = new double **[nLayers-1];
-	for (int i = 0; i < nLayers-1; i++) {
-		weights[i] = new double*[structure[i+1]];
-		for (int j = 0; j < structure[i+1]; j++) {
-			weights[i][j] = new double[structure[i+2]];
+	this->weights = new double **[nLayers-1];
+	for (int i = 0; i < this->nLayers-1; i++) {
+		this->weights[i] = new double*[structure[i+1]];
+		for (int j = 0; j < this->structure[i+1]; j++) {
+			this->weights[i][j] = new double[structure[i+2]];
 		}
 	}
 
-	for (int i = 0; i < nLayers-1; i++) {
-		for (int j = 0; j < structure[i+1]; j++) {
-			for (int k = 0; k < structure[i+2]; k++) {
-				weights[i][j][k] = i + j + k; // changer i+j par rand ou similaire
+	for (int i = 0; i < this->nLayers-1; i++) {
+		for (int j = 0; j < this->structure[i+1]; j++) {
+			for (int k = 0; k < this->structure[i+2]; k++) {
+				this->weights[i][j][k] = i + j + k; // changer i+j par rand ou similaire
 			}
 		}
 	}
@@ -53,27 +53,27 @@ Red::Red(int *structure_in) {
 
 void Red::inputs(double *in){
 	cout<<endl;
-	for( int e=0; e<structure[1]; e++){
-		Layers[0][e].setValor(in[e]);
-		cout<<"Entrada "<<e<<"="<<Layers[0][e].getValor()<<endl;
+	for( int e=0; e<this->structure[1]; e++){
+		this->Layers[0][e].setValor(in[e]);
+		cout<<"Entrada "<<e<<"="<<this->Layers[0][e].getValor()<<endl;
 	}
 	cout<<endl;
 }
 
 void Red::print(){
-	for (int c=0; c<nLayers; c++){
-		for (int n=0; n<structure[c+1]; n++){
-			Layers[c][n].print();
+	for (int c=0; c<this->nLayers; c++){
+		for (int n=0; n<this->structure[c+1]; n++){
+			this->Layers[c][n].print();
 			//cout<<"Neurona en : capa "<<Capas[c][n].posCapa<<", pos "<<Capas[c][n].posNeurona<<endl;
 		}
 	}
 	//Weights print
 	cout << endl << " Weights tensor" << endl;
-	for (int i = 0; i < nLayers-1; i++) {
+	for (int i = 0; i < this->nLayers-1; i++) {
 		cout <<endl<< "Weight matrix " << i + 1 << endl;
-		for (int j = 0; j < structure[i+1]; j++) {
-			for (int k = 0; k < structure[i+2]; k++) {
-				cout << weights[i][j][k] << '\t';
+		for (int j = 0; j < this->structure[i+1]; j++) {
+			for (int k = 0; k < this->structure[i+2]; k++) {
+				cout << this->weights[i][j][k] << '\t';
 			}
 			cout << endl;
 		}		
