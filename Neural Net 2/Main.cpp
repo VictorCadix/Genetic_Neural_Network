@@ -14,6 +14,7 @@ void main(){
 
 	Red red(structure);
 	red.inputs(input);
+	red.geneForwardProp();
 
 	red.print();
 	getch();

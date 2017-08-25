@@ -65,4 +65,23 @@ void Red::print(){
 			cout << endl;
 		}		
 	}
+
+	//Result print
+	cout << "Result = " << getResult() << endl;
+}
+
+void Red::geneForwardProp() {
+	for (int n = 0; n < nLayers - 1; n++) {
+		for (int i = 0; i < structure[n + 2]; i++) {
+			double result = 0;
+			for (int j = 0; j < structure[n + 1]; j++) {
+				result += layers[n][j].getValor()*genes[n][j][i];
+			}
+			layers[n + 1][i].setValor(result);
+		}
+	}
+}
+
+double Red::getResult() {
+	return (layers[nLayers-1][0].getValor()); // Only works for 1 output
 }
