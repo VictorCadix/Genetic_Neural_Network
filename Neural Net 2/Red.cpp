@@ -14,12 +14,12 @@ Red::Red(int *structure_in) {
 		}*/
 
 	for (int c = 0; c < this->nLayers; c++) {
-		this->Layers.push_back(Layer());
+		this->layers.push_back(Layer());
 		for (int n = 0; n < this->structure[c + 1]; n++) {
 			if (c != 0)
-				this->Layers.back().push_back(Neurona(c, n, structure[c]));
+				this->layers.back().push_back(Neurona(c, n, structure[c]));
 			else //input neuron
-				this->Layers.back().push_back(Neurona(c, n, 0));
+				this->layers.back().push_back(Neurona(c, n, 0));
 		}
 	}
 
@@ -54,8 +54,8 @@ Red::Red(int *structure_in) {
 void Red::inputs(double *in){
 	cout<<endl;
 	for( int e=0; e<this->structure[1]; e++){
-		this->Layers[0][e].setValor(in[e]);
-		cout<<"Entrada "<<e<<"="<<this->Layers[0][e].getValor()<<endl;
+		this->layers[0][e].setValor(in[e]);
+		cout<<"Entrada "<<e<<"="<<this->layers[0][e].getValor()<<endl;
 	}
 	cout<<endl;
 }
@@ -63,7 +63,7 @@ void Red::inputs(double *in){
 void Red::print(){
 	for (int c=0; c<this->nLayers; c++){
 		for (int n=0; n<this->structure[c+1]; n++){
-			this->Layers[c][n].print();
+			this->layers[c][n].print();
 			//cout<<"Neurona en : capa "<<Capas[c][n].posCapa<<", pos "<<Capas[c][n].posNeurona<<endl;
 		}
 	}

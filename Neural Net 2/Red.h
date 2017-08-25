@@ -14,7 +14,7 @@ class Red{
 	int *structure;
 	double ***weights;
 	
-	vector <Layer> Layers;
+	vector <Layer> layers;
 
 public:
 	//Red();
