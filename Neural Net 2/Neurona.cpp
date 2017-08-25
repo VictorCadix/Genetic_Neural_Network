@@ -6,9 +6,9 @@ Neurona::Neurona(){
 	cout<<"Neurona creada (por defecto)"<<endl;
 }
 
-Neurona::Neurona(int Capa, int Neurona,int nNeuronasCapaAnterior){
-	this->posCapa = Capa;
-	this->posNeurona = Neurona;
+Neurona::Neurona(int capa, int neurona,int nNeuronasCapaAnterior){
+	this->posCapa = capa;
+	this->posNeurona = neurona;
 	this->neuronasCapaAnterior = nNeuronasCapaAnterior;
 	cout<<"Neurona creada: capa "<<this->posCapa<<", pos "<<this->posNeurona<<endl;
 	if (this->posCapa == 0)
