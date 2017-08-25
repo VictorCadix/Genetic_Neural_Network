@@ -21,18 +21,18 @@ Red::Red(int *structure_in) {
 
 	//Weights initialization
 	
-	this->weights = new double **[nLayers-1];
+	this->genes = new double **[nLayers-1];
 	for (int i = 0; i < this->nLayers-1; i++) {
-		this->weights[i] = new double*[structure[i+1]];
+		this->genes[i] = new double*[structure[i+1]];
 		for (int j = 0; j < this->structure[i+1]; j++) {
-			this->weights[i][j] = new double[structure[i+2]];
+			this->genes[i][j] = new double[structure[i+2]];
 		}
 	}
 
 	for (int i = 0; i < this->nLayers-1; i++) {
 		for (int j = 0; j < this->structure[i+1]; j++) {
 			for (int k = 0; k < this->structure[i+2]; k++) {
-				this->weights[i][j][k] = i + j + k; // changer i+j par rand ou similaire
+				this->genes[i][j][k] = i + j + k; // changer i+j par rand ou similaire
 			}
 		}
 	}
@@ -60,7 +60,7 @@ void Red::print(){
 		cout <<endl<< "Weight matrix " << i + 1 << endl;
 		for (int j = 0; j < this->structure[i+1]; j++) {
 			for (int k = 0; k < this->structure[i+2]; k++) {
-				cout << this->weights[i][j][k] << '\t';
+				cout << this->genes[i][j][k] << '\t';
 			}
 			cout << endl;
 		}		

@@ -12,7 +12,7 @@ class Red{
 	int nLayers;
 	int nNeuronas;
 	int *structure;
-	double ***weights;
+	double ***genes;
 	
 	vector <Layer> layers;
 
