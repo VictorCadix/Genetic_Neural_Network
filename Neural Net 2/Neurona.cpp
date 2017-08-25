@@ -12,7 +12,7 @@ Neurona::Neurona(int capa, int neurona,int nNeuronasCapaAnterior){
 	this->neuronasCapaAnterior = nNeuronasCapaAnterior;
 	cout<<"Neurona creada: capa "<<this->posCapa<<", pos "<<this->posNeurona<<endl;
 	if (this->posCapa == 0)
-		this->pesos = new double[1];
+		this->pesos = NULL;
 	else
 		this->pesos =  new double [neuronasCapaAnterior];
 
