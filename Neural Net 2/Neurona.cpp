@@ -9,31 +9,31 @@ Neurona::Neurona(){
 Neurona::Neurona(int Capa, int Neurona,int nNeuronasCapaAnterior){
 	this->posCapa = Capa;
 	this->posNeurona = Neurona;
-	this->NeuronasCapaAnterior = nNeuronasCapaAnterior;
+	this->neuronasCapaAnterior = nNeuronasCapaAnterior;
 	cout<<"Neurona creada: capa "<<this->posCapa<<", pos "<<this->posNeurona<<endl;
 	if (this->posCapa == 0)
 		this->pesos = new double[1];
 	else
-		this->pesos =  new double [NeuronasCapaAnterior];
+		this->pesos =  new double [neuronasCapaAnterior];
 
 	//Inicializa los pesos
-	for (int p=0; p<this->NeuronasCapaAnterior; p++){
+	for (int p=0; p<this->neuronasCapaAnterior; p++){
 		this->pesos[p] = (double)(rand() % 200)/10-10;
 	}
 }
 
 void Neurona::print(){
 	cout<<"Neurona: capa "<<this->posCapa<<" pos "<<this->posNeurona<<endl;
-	cout<<"Neuronas Capa anterior: "<<this->NeuronasCapaAnterior<<endl;
+	cout<<"Neuronas Capa anterior: "<<this->neuronasCapaAnterior<<endl;
 	cout<<"Pesos: ";
-	for (int a=0; a<this->NeuronasCapaAnterior; a++){
+	for (int a=0; a<this->neuronasCapaAnterior; a++){
 		cout<<this->pesos[a]<<"/";
 	}
 	cout<<endl;
 }
 
 void Neurona::actualizaPesos(){
-	for (int a=0; a<this->NeuronasCapaAnterior; a++){
+	for (int a=0; a<this->neuronasCapaAnterior; a++){
 		this->pesos[a];
 	}
 }

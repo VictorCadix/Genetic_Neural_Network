@@ -6,7 +6,7 @@
 class Neurona{
 	double *pesos;
 	double valor;
-	int NeuronasCapaAnterior;
+	int neuronasCapaAnterior;
 public:
 	int posCapa;
 	int posNeurona;
