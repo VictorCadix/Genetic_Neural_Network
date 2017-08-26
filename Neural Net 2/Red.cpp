@@ -29,6 +29,7 @@ Red::Red(int *structure_in) {
 		}
 	}
 
+
 	for (int i = 0; i < this->nLayers-1; i++) {
 		for (int j = 0; j < this->structure[i+1]; j++) {
 			for (int k = 0; k < this->structure[i+2]; k++) {
@@ -84,4 +85,22 @@ void Red::geneForwardProp() {
 
 double Red::getResult() {
 	return (layers[nLayers-1][0].getValor()); // Only works for 1 output
+}
+
+double *** Red::getGenes() {
+	return genes;
+}
+
+void Red::setGenes(double***genes) {
+	this->genes = genes;
+}
+
+void Red::setRandomGenes() {
+	for (int i = 0; i < this->nLayers - 1; i++) {
+		for (int j = 0; j < this->structure[i + 1]; j++) {
+			for (int k = 0; k < this->structure[i + 2]; k++) {
+				this->genes[i][j][k] = (double)(rand() % 200) / 100 - 1;
+			}
+		}
+	}
 }

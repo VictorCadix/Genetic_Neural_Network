@@ -13,6 +13,7 @@ void main(){
 	double input[]={1,3};
 
 	Red red(structure);
+	red.setRandomGenes();
 	red.inputs(input);
 	red.geneForwardProp();
 

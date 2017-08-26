@@ -23,5 +23,8 @@ public:
 	void print();
 	void geneForwardProp();
 	double getResult();
+	double *** getGenes();
+	void setGenes(double***genes);
+	void setRandomGenes();
 };
 #endif
