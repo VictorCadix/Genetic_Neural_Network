@@ -15,9 +15,9 @@ void main(int argc, char* argv[]){
 	Red red(structure);
 	red.inputs(input);
 
-	red.print();
 	red.forwardProp();
-	
+	red.print();
+
 	if (argv[1] == NULL)
 	{
 		getch();
