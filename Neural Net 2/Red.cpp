@@ -65,6 +65,8 @@ void Red::print(){
 			cout << endl;
 		}		
 	}
+
+	cout << "Result : " << this->getResult() << endl;
 }
 
 void Red::forwardProp()
@@ -96,4 +98,8 @@ void Red::forwardProp()
 			currentNeuron.setValor(value);
 		}
 	}
+}
+
+double Red::getResult() {
+	return (layers[nLayers - 1][0].getValor()); // Only works for 1 output
 }

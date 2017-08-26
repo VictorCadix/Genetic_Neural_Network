@@ -22,5 +22,6 @@ public:
 	void inputs(double *in);
 	void print();
 	void forwardProp();
+	double getResult();
 };
 #endif
