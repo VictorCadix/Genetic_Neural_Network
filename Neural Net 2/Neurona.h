@@ -4,9 +4,9 @@
 #include <iostream>
 
 class Neurona{
-	double *pesos;
 	double valor;
 public:
+	double *pesos;
 	int neuronasCapaAnterior;
 	int posCapa;
 	int posNeurona;
