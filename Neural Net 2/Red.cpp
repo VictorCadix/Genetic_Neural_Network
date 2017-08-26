@@ -75,6 +75,7 @@ void Red::forwardProp()
 
 	for (int i = 1; i < this->nLayers; i++)
 	{
+		cout << endl << "== NEW LAYER ==" << endl;
 		//In a layer
 		Layer currentLayer = this->layers[i];
 
@@ -84,6 +85,8 @@ void Red::forwardProp()
 		for (int j = 0; j < currentLayer.size(); j++)
 		{
 			//In a neuron
+			cout << "NEURON" << endl;
+
 			Neurona currentNeuron = currentLayer[j];
 			double value = 0;
 
@@ -91,11 +94,16 @@ void Red::forwardProp()
 			for (int k = 0; k < currentNeuron.neuronasCapaAnterior; k++)
 			{
 				//In a previous neuron
-				value = value + currentNeuron.pesos[k] * previousLayer[k].getValor();
+				double previousNeuronValue = previousLayer[k].getValor();
+				value = value + (currentNeuron.pesos[k] * previousNeuronValue);
+				cout << "Previous neuron value : " << previousNeuronValue << endl;
 			}
 
 			//We save the value in the current neuron
 			currentNeuron.setValor(value);
+			double test = currentNeuron.getValor();
+			cout << "Neuron value : " << test << endl;
+			cout << endl;
 		}
 	}
 }
