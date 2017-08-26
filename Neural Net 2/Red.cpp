@@ -66,3 +66,34 @@ void Red::print(){
 		}		
 	}
 }
+
+void Red::forwardProp()
+{
+	//We skip the input layer
+
+	for (int i = 1; i < this->nLayers; i++)
+	{
+		//In a layer
+		Layer currentLayer = this->layers[i];
+
+		//Previous layer
+		Layer previousLayer = this->layers[i - 1];
+
+		for (int j = 0; j < currentLayer.size(); j++)
+		{
+			//In a neuron
+			Neurona currentNeuron = currentLayer[j];
+			double value = 0;
+
+			//For that neuron, we calculate it's value with the previous layer's neurons
+			for (int k = 0; k < currentNeuron.neuronasCapaAnterior; k++)
+			{
+				//In a previous neuron
+				value = value + currentNeuron.pesos[k] * currentLayer[k].getValor();
+			}
+
+			//We save the value in the current neuron
+			currentNeuron.setValor(value);
+		}
+	}
+}

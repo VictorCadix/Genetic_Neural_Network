@@ -16,5 +16,6 @@ void main(){
 	red.inputs(input);
 
 	red.print();
+	red.forwardProp();
 	getch();
 }

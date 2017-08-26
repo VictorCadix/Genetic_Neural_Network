@@ -21,5 +21,6 @@ public:
 	Red(int *structure_in);
 	void inputs(double *in);
 	void print();
+	void forwardProp();
 };
 #endif
