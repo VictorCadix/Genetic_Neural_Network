@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void main(){
+void main(int argc, char* argv[]){
 	srand (time(NULL));
 
 	int structure[]={3,2,3,1};
@@ -17,6 +17,12 @@ void main(){
 	red.inputs(input);
 	red.geneForwardProp();
 
+	red.forwardProp();
 	red.print();
-	getch();
+
+	if (argv[1] == NULL)
+	{
+		getch();
+	}
+	
 }

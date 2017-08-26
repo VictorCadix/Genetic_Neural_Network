@@ -4,10 +4,10 @@
 #include <iostream>
 
 class Neurona{
-	double *pesos;
 	double valor;
-	int neuronasCapaAnterior;
 public:
+	double *pesos;
+	int neuronasCapaAnterior;
 	int posCapa;
 	int posNeurona;
 
@@ -17,7 +17,7 @@ public:
 	Neurona(int Capa, int Neurona, int nNeuronasCapaAnterior);
 	void print();
 	void actualizaPesos();
-	void setValor(double val){valor=val;}
-	double getValor(){return valor;}
+	void setValor(double val){this->valor=val;}
+	double getValor(){return this->valor;}
 };
 #endif

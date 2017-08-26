@@ -22,9 +22,10 @@ public:
 	void inputs(double *in);
 	void print();
 	void geneForwardProp();
-	double getResult();
 	double *** getGenes();
 	void setGenes(double***genes);
 	void setRandomGenes();
+	void forwardProp();
+	double getResult();
 };
 #endif

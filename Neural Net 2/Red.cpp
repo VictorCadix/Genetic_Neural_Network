@@ -7,7 +7,7 @@ Red::Red(int *structure_in) {
 	this->nLayers = structure[0];
 	cout << "Net with " << this->nLayers << " layers" << endl;
 
-	// Creation du reséau
+	// Creation du resÃ©au
 
 	for (int c = 0; c < this->nLayers; c++) {
 		this->layers.push_back(Layer());
@@ -103,4 +103,47 @@ void Red::setRandomGenes() {
 			}
 		}
 	}
+  
+void Red::forwardProp()
+{
+	//We skip the input layer
+
+	for (int i = 1; i < this->nLayers; i++)
+	{
+		cout << endl << "== NEW LAYER ==" << endl;
+		//In a layer
+		Layer currentLayer = this->layers[i];
+
+		//Previous layer
+		Layer previousLayer = this->layers[i - 1];
+
+		for (int j = 0; j < currentLayer.size(); j++)
+		{
+			//In a neuron
+			cout << "NEURON" << endl;
+
+			Neurona currentNeuron = currentLayer[j];
+			double value = 0;
+
+			//For that neuron, we calculate it's value with the previous layer's neurons
+			for (int k = 0; k < currentNeuron.neuronasCapaAnterior; k++)
+			{
+				//In a previous neuron
+				double previousNeuronValue = previousLayer[k].getValor();
+				value = value + (currentNeuron.pesos[k] * previousNeuronValue);
+				cout << "Previous neuron value : " << previousNeuronValue << endl;
+			}
+
+			//We save the value in the current neuron
+			currentNeuron.setValor(value);
+			layers[i][j].setValor(value);
+			double test = currentNeuron.getValor();
+			cout << "Neuron value : " << test << endl;
+			cout << endl;
+		}
+	}
+}
+
+double Red::getResult() {
+	return (layers[nLayers - 1][0].getValor()); // Only works for 1 output
 }
