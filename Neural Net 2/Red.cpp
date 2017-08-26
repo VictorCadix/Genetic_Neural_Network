@@ -89,7 +89,7 @@ void Red::forwardProp()
 			for (int k = 0; k < currentNeuron.neuronasCapaAnterior; k++)
 			{
 				//In a previous neuron
-				value = value + currentNeuron.pesos[k] * currentLayer[k].getValor();
+				value = value + currentNeuron.pesos[k] * previousLayer[k].getValor();
 			}
 
 			//We save the value in the current neuron
