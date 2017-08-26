@@ -7,7 +7,7 @@ Red::Red(int *structure_in) {
 	this->nLayers = structure[0];
 	cout << "Net with " << this->nLayers << " layers" << endl;
 
-	// Creation du reséau
+	// Creation du reseau
 
 	for (int c = 0; c < this->nLayers; c++) {
 		this->layers.push_back(Layer());
