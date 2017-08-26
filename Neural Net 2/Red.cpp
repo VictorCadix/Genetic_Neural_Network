@@ -7,7 +7,7 @@ Red::Red(int *structure_in) {
 	this->nLayers = structure[0];
 	cout << "Net with " << this->nLayers << " layers" << endl;
 
-	// Creation du reséau
+	// Creation du reseau
 
 	for (int c = 0; c < this->nLayers; c++) {
 		this->layers.push_back(Layer());
@@ -28,6 +28,7 @@ Red::Red(int *structure_in) {
 			this->genes[i][j] = new double[structure[i+2]];
 		}
 	}
+
 
 	for (int i = 0; i < this->nLayers-1; i++) {
 		for (int j = 0; j < this->structure[i+1]; j++) {
@@ -66,9 +67,44 @@ void Red::print(){
 		}		
 	}
 
-	cout << "Result : " << this->getResult() << endl;
+	//Result print
+	cout << "Result = " << getResult() << endl;
 }
 
+void Red::geneForwardProp() {
+	for (int n = 0; n < nLayers - 1; n++) {
+		for (int i = 0; i < structure[n + 2]; i++) {
+			double result = 0;
+			for (int j = 0; j < structure[n + 1]; j++) {
+				result += layers[n][j].getValor()*genes[n][j][i];
+			}
+			layers[n + 1][i].setValor(result);
+		}
+	}
+}
+
+double Red::getResult() {
+	return (layers[nLayers-1][0].getValor()); // Only works for 1 output
+}
+
+double *** Red::getGenes() {
+	return genes;
+}
+
+void Red::setGenes(double***genes) {
+	this->genes = genes;
+}
+
+void Red::setRandomGenes() {
+	for (int i = 0; i < this->nLayers - 1; i++) {
+		for (int j = 0; j < this->structure[i + 1]; j++) {
+			for (int k = 0; k < this->structure[i + 2]; k++) {
+				this->genes[i][j][k] = (double)(rand() % 200) / 100 - 1;
+			}
+		}
+	}
+}
+  
 void Red::forwardProp()
 {
 	//We skip the input layer
@@ -107,8 +143,4 @@ void Red::forwardProp()
 			cout << endl;
 		}
 	}
-}
-
-double Red::getResult() {
-	return (layers[nLayers - 1][0].getValor()); // Only works for 1 output
 }

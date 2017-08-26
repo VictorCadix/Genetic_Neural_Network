@@ -13,7 +13,9 @@ void main(int argc, char* argv[]){
 	double input[]={1,3};
 
 	Red red(structure);
+	red.setRandomGenes();
 	red.inputs(input);
+	red.geneForwardProp();
 
 	red.forwardProp();
 	red.print();
