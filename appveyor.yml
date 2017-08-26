@@ -1,1 +1,5 @@
 image: Visual Studio 2017
+
+after_build:
+  - cd Debug
+  - '"Neural Net 2.exe" 1' 
