@@ -103,6 +103,7 @@ void Red::setRandomGenes() {
 			}
 		}
 	}
+}
   
 void Red::forwardProp()
 {
@@ -142,8 +143,4 @@ void Red::forwardProp()
 			cout << endl;
 		}
 	}
-}
-
-double Red::getResult() {
-	return (layers[nLayers - 1][0].getValor()); // Only works for 1 output
 }
