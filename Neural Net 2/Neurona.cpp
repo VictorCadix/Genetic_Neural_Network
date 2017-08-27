@@ -40,5 +40,7 @@ void Neurona::actualizaPesos(){
 
 void Neurona::activate()
 {
-
+	double value = this->getValor();
+	double activatedValue = 1 / (1 + exp(-1 * value));
+	this->setValor(activatedValue);
 }
