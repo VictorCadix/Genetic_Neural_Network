@@ -4,12 +4,14 @@ using namespace std;
 
 Neurona::Neurona(){
 	cout<<"Neurona creada (por defecto)"<<endl;
+	this->valor = 0;
 }
 
 Neurona::Neurona(int capa, int neurona,int nNeuronasCapaAnterior){
 	this->posCapa = capa;
 	this->posNeurona = neurona;
 	this->neuronasCapaAnterior = nNeuronasCapaAnterior;
+	this->valor = 0;
 	cout<<"Neurona creada: capa "<<this->posCapa<<", pos "<<this->posNeurona<<endl;
 	if (this->posCapa == 0)
 		this->pesos = NULL;
