@@ -10,6 +10,11 @@ Neurona::Neurona(int capa, int neurona,int nNeuronasCapaAnterior){
 	this->posCapa = capa;
 	this->posNeurona = neurona;
 	this->neuronasCapaAnterior = nNeuronasCapaAnterior;
+
+	if (this->neuronasCapaAnterior < 0) { // -1 for bias neuron
+		this->valor = 1;
+		this->neuronasCapaAnterior = 0;
+	}
 	cout<<"Neurona creada: capa "<<this->posCapa<<", pos "<<this->posNeurona<<endl;
 	if (this->posCapa == 0)
 		this->pesos = NULL;
