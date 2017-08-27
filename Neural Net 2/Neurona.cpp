@@ -37,3 +37,8 @@ void Neurona::actualizaPesos(){
 		this->pesos[a];
 	}
 }
+
+void Neurona::activate()
+{
+
+}
