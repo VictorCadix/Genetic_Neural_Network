@@ -4,6 +4,7 @@
 #include <iostream>
 
 class Neurona{
+private:
 	double valor;
 public:
 	double *pesos;
