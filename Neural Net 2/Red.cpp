@@ -26,7 +26,7 @@ Red::Red(int *structure_in) {
 	
 	this->genes = new double **[nLayers-1];
 	for (int i = 0; i < this->nLayers-1; i++) {
-		this->genes[i] = new double*[structure[i+1]];
+		this->genes[i] = new double*[structure[i+1]+1]; //[]+1 for bias
 		for (int j = 0; j < this->structure[i+1]; j++) {
 			this->genes[i][j] = new double[structure[i+2]];
 		}
@@ -34,7 +34,7 @@ Red::Red(int *structure_in) {
 
 
 	for (int i = 0; i < this->nLayers-1; i++) {
-		for (int j = 0; j < this->structure[i+1]; j++) {
+		for (int j = 0; j < this->structure[i+1]+1; j++) { //[]+1 for bias
 			for (int k = 0; k < this->structure[i+2]; k++) {
 				this->genes[i][j][k] = i + j + k; // changer i+j par rand ou similaire
 			}
