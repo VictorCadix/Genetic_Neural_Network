@@ -12,8 +12,10 @@ Red::Red(int *structure_in) {
 	for (int c = 0; c < this->nLayers; c++) {
 		this->layers.push_back(Layer());
 		for (int n = 0; n <= this->structure[c + 1]; n++) {  // <= for the bias neuron
-			if (n == structure[c + 1])
-				this->layers.back().push_back(Neurona(c, n, -1)); //-1 code for constructor (bias neuron)
+			if (n == structure[c + 1]) {
+				if (c < nLayers - 1)
+					this->layers.back().push_back(Neurona(c, n, -1)); //-1 code for constructor (bias neuron)
+			}
 			else {
 				if (c != 0)
 					this->layers.back().push_back(Neurona(c, n, structure[c] + 1)); // neurons + 1 for bias
