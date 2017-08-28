@@ -27,7 +27,7 @@ Red::Red(int *structure_in) {
 	this->genes = new double **[nLayers-1];
 	for (int i = 0; i < this->nLayers-1; i++) {
 		this->genes[i] = new double*[structure[i+1]+1]; //[]+1 for bias
-		for (int j = 0; j < this->structure[i+1]; j++) {
+		for (int j = 0; j < this->structure[i+1]+1; j++) { //same
 			this->genes[i][j] = new double[structure[i+2]];
 		}
 	}
