@@ -78,7 +78,7 @@ void Red::geneForwardProp() {
 	for (int n = 0; n < nLayers - 1; n++) {
 		for (int i = 0; i < structure[n + 2]; i++) {
 			double result = 0;
-			for (int j = 0; j < structure[n + 1]; j++) {
+			for (int j = 0; j < structure[n + 1]+1; j++) { //[]+1 for bias
 				result += layers[n][j].getValor()*genes[n][j][i];
 			}
 			layers[n + 1][i].setValor(result);
@@ -100,7 +100,7 @@ void Red::setGenes(double***genes) {
 
 void Red::setRandomGenes() {
 	for (int i = 0; i < this->nLayers - 1; i++) {
-		for (int j = 0; j < this->structure[i + 1]; j++) {
+		for (int j = 0; j < this->structure[i + 1]+1; j++) { //[]+1 for bias
 			for (int k = 0; k < this->structure[i + 2]; k++) {
 				this->genes[i][j][k] = (double)(rand() % 200) / 100 - 1;
 			}
