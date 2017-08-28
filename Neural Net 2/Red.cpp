@@ -62,7 +62,7 @@ void Red::print(){
 	cout << endl << " Weights tensor" << endl;
 	for (int i = 0; i < this->nLayers-1; i++) {
 		cout <<endl<< "Weight matrix " << i + 1 << endl;
-		for (int j = 0; j < this->structure[i+1]; j++) {
+		for (int j = 0; j < this->structure[i+1]+1; j++) { //[]+1 for bias
 			for (int k = 0; k < this->structure[i+2]; k++) {
 				cout << this->genes[i][j][k] << '\t';
 			}
