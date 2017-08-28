@@ -138,7 +138,7 @@ void Red::forwardProp()
 			//We save the value in the current neuron
 			currentNeuron.setValor(value);
 			layers[i][j].setValor(value);
-			layers[i][j].activate();
+			layers[i][j].activate_sigmoid();
 			double test = currentNeuron.getValor();
 			cout << "Neuron value : " << test << endl;
 			cout << endl;

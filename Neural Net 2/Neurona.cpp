@@ -38,7 +38,7 @@ void Neurona::actualizaPesos(){
 	}
 }
 
-void Neurona::activate()
+void Neurona::activate_sigmoid()
 {
 	double value = this->getValor();
 	double activatedValue = 1 / (1 + exp(-1 * value));
