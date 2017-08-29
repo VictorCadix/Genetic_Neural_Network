@@ -22,7 +22,10 @@ Neurona::Neurona(int capa, int neurona,int nNeuronasCapaAnterior){
 		cout << "Bias create: layer " << this->posCapa << ", pos " << this->posNeurona << endl;
 	}
 	else
+	{
+		this->valor = 0;
 		cout << "Neurona creada: capa " << this->posCapa << ", pos " << this->posNeurona << endl;
+	}
 
 	if (this->posCapa == 0)
 		this->pesos = NULL;
