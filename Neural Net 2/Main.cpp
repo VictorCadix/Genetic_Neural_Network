@@ -7,7 +7,7 @@
 using namespace std;
 
 void main(int argc, char* argv[]){
-	srand (time(NULL));
+	srand ((unsigned int) time(NULL));
 
 	int structure[]={3,2,3,1};
 	double input[]={1,3};
