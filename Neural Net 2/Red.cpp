@@ -17,21 +17,24 @@ Red::Red(int *structure_in) {
 			else //input neuron
 				this->layers.back().push_back(Neurona(c, n, 0));
 		}
+
+		if (c < this->nLayers - 1) //All layers but the last one
+			this->layers.back().push_back(Neurona(c, this->structure[c + 1], -1));
 	}
 
 	//Weights initialization
 	
 	this->genes = new double **[nLayers-1];
 	for (int i = 0; i < this->nLayers-1; i++) {
-		this->genes[i] = new double*[structure[i+1]];
-		for (int j = 0; j < this->structure[i+1]; j++) {
+		this->genes[i] = new double*[structure[i+1]+1]; //[]+1 for bias
+		for (int j = 0; j < this->structure[i+1]+1; j++) { //same
 			this->genes[i][j] = new double[structure[i+2]];
 		}
 	}
 
 
 	for (int i = 0; i < this->nLayers-1; i++) {
-		for (int j = 0; j < this->structure[i+1]; j++) {
+		for (int j = 0; j < this->structure[i+1]+1; j++) { //[]+1 for bias
 			for (int k = 0; k < this->structure[i+2]; k++) {
 				this->genes[i][j][k] = i + j + k; // changer i+j par rand ou similaire
 			}
@@ -59,7 +62,7 @@ void Red::print(){
 	cout << endl << " Weights tensor" << endl;
 	for (int i = 0; i < this->nLayers-1; i++) {
 		cout <<endl<< "Weight matrix " << i + 1 << endl;
-		for (int j = 0; j < this->structure[i+1]; j++) {
+		for (int j = 0; j < this->structure[i+1]+1; j++) { //[]+1 for bias
 			for (int k = 0; k < this->structure[i+2]; k++) {
 				cout << this->genes[i][j][k] << '\t';
 			}
@@ -75,7 +78,7 @@ void Red::geneForwardProp() {
 	for (int n = 0; n < nLayers - 1; n++) {
 		for (int i = 0; i < structure[n + 2]; i++) {
 			double result = 0;
-			for (int j = 0; j < structure[n + 1]; j++) {
+			for (int j = 0; j < structure[n + 1]+1; j++) { //[]+1 for bias
 				result += layers[n][j].getValor()*genes[n][j][i];
 			}
 			layers[n + 1][i].setValor(result);
@@ -97,7 +100,7 @@ void Red::setGenes(double***genes) {
 
 void Red::setRandomGenes() {
 	for (int i = 0; i < this->nLayers - 1; i++) {
-		for (int j = 0; j < this->structure[i + 1]; j++) {
+		for (int j = 0; j < this->structure[i + 1]+1; j++) { //[]+1 for bias
 			for (int k = 0; k < this->structure[i + 2]; k++) {
 				this->genes[i][j][k] = (double)(rand() % 200) / 100 - 1;
 			}
