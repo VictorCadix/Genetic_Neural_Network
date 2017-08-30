@@ -19,12 +19,16 @@ Neurona::Neurona(int capa, int neurona,int nNeuronasCapaAnterior){
 	if (this->neuronasCapaAnterior < 0) { // -1 for bias neuron
 		this->valor = 1;
 		this->neuronasCapaAnterior = 0;
-		cout << "Bias create: layer " << this->posCapa << ", pos " << this->posNeurona << endl;
+		cout << "Bias created: layer " << this->posCapa << ", pos " << this->posNeurona << endl;
+	}
+
+	else if (this->posCapa == 0) {
+		cout << "Input neuron created: layer " << this->posCapa << ", pos " << this->posNeurona << endl;
 	}
 	else
 	{
 		this->valor = 0;
-		cout << "Neurona creada: capa " << this->posCapa << ", pos " << this->posNeurona << endl;
+		cout << "Neuron created: layer " << this->posCapa << ", pos " << this->posNeurona << endl;
 	}
 
 	if (this->posCapa == 0)

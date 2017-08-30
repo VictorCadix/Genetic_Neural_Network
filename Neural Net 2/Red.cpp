@@ -43,10 +43,11 @@ Red::Red(int *structure_in) {
 }
 
 void Red::inputs(double *in){
-	cout<<endl;
+	cout<<endl<<"- Inputs -"<<endl;
+	
 	for( int e=0; e<this->structure[1]; e++){
 		this->layers[0][e].setValor(in[e]);
-		cout<<"Entrada "<<e<<"="<<this->layers[0][e].getValor()<<endl;
+		cout<<"Input "<<e<<" = "<<this->layers[0][e].getValor()<<endl;
 	}
 	cout<<endl;
 }
@@ -84,6 +85,7 @@ void Red::geneForwardProp() {
 			layers[n + 1][i].setValor(result);
 		}
 	}
+	cout << endl << "Result = " << getResult() << endl;
 }
 
 double Red::getResult() {

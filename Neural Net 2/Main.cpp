@@ -15,10 +15,10 @@ void main(int argc, char* argv[]){
 	Red red(structure);
 	red.setRandomGenes();
 	red.inputs(input);
-	red.geneForwardProp();
-
-	red.forwardProp();
 	red.print();
+	
+	red.geneForwardProp();
+	red.forwardProp();
 
 	if (argv[1] == NULL)
 	{
