@@ -9,6 +9,7 @@ using namespace std;
 typedef	vector <Neurona> Layer; 
 
 class Red{
+public:
 	int nLayers;
 	int nNeuronas;
 	int *structure;
@@ -16,7 +17,6 @@ class Red{
 	
 	vector <Layer> layers;
 
-public:
 	//Red();
 	Red(int *structure_in);
 	void inputs(double *in);
