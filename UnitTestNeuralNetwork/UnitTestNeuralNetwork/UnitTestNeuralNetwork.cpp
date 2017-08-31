@@ -98,3 +98,60 @@ TEST_CASE("Fonction d'activation")
 		REQUIRE(abs(test.getValor() - (-0.99)) < 0.01);
 	}
 }
+
+TEST_CASE("Constructeur de Red")
+{
+	int structure[] = { 3,2,3,1 };
+	Red red = Red(structure);
+
+	SECTION("Attribut structure correct")
+	{
+		REQUIRE(structure[0] == 3);
+		REQUIRE(structure[1] == 2);
+		REQUIRE(structure[2] == 3);
+		REQUIRE(structure[3] == 1);
+	}
+
+	SECTION("Attrbiut nombre de couches")
+	{
+		REQUIRE(red.nLayers == 3);
+	}
+
+	SECTION("Nombre de couches crees")
+	{
+		REQUIRE(red.layers.size() == 3);
+	}
+
+	SECTION("Nombre de neurones dans chaque couche")
+	{
+		//One more neuron (the bias) on all layers but the last one
+		REQUIRE(red.layers[0].size() == 3);
+		REQUIRE(red.layers[1].size() == 4);
+		REQUIRE(red.layers[2].size() == 1);
+	}
+
+	SECTION("Premiere couche d'input neurons")
+	{
+		Layer couche = red.layers[0];
+		for (int i = 0; i < couche.size(); i++)
+		{
+			REQUIRE(couche[i].neuronasCapaAnterior == 0);
+			REQUIRE(couche[i].posNeurona == i);
+			REQUIRE(couche[i].posCapa == 0);
+			REQUIRE(couche[i].pesos == NULL);
+		}
+	}
+
+	SECTION("Bias neurons correctement crees")
+	{
+		for (int i = 0; i < red.nLayers - 1; i++)
+		{
+			Layer couche = red.layers[i];
+			Neurona neuron = couche[couche.size()-1];
+			REQUIRE(neuron.getValor() == 1);
+			REQUIRE(neuron.posCapa == i);
+			REQUIRE(neuron.neuronasCapaAnterior == 0);
+			//REQUIRE(neuron.pesos == NULL);
+		}
+	}
+}
