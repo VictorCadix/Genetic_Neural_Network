@@ -7,8 +7,12 @@ after_build:
   - cd "Neural Net 2"
   - cd "Debug"
   - '"Neural Net 2.exe" 1'
-  - echo "== Starting tests =="
+
+before_test:
+  - echo == Starting tests ==
   - cd "../.."
   - msbuild UnitTestNeuralNetwork
   - cd UnitTestNeuralNetwork/x64/Debug
+
+test_script:
   - "UnitTestNeuralNetwork.exe"
