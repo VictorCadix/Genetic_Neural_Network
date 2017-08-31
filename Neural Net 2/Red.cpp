@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "Red.h"
 
 using namespace std;

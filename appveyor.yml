@@ -1,5 +1,14 @@
 image: Visual Studio 2017
 
+build:
+  project: "Neural Net 2"
+
 after_build:
-  - cd Debug
-  - '"Neural Net 2.exe" 1' 
+  - cd "Neural Net 2"
+  - cd "Debug"
+  - '"Neural Net 2.exe" 1'
+  - echo "== Starting tests =="
+  - cd "../.."
+  - msbuild UnitTestNeuralNetwork
+  - cd UnitTestNeuralNetwork/x64/Debug
+  - "UnitTestNeuralNetwork.exe"
