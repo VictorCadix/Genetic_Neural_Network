@@ -10,8 +10,16 @@
 #include "../../Neural Net 2/Neurona.h"
 #include "../../Neural Net 2/Red.h"
 
-TEST_CASE("Création d'un objet Neurone bien formé")
+TEST_CASE("Creation d'un objet Neurona classique bien forme")
 {
 	Neurona neuroneTest = Neurona(1, 1, 1);
 	REQUIRE(neuroneTest.getValor() == 0);
+	REQUIRE(neuroneTest.posNeurona == 1);
+	REQUIRE(neuroneTest.posCapa == 1);
+	REQUIRE(neuroneTest.neuronasCapaAnterior == 1);
+	
+	for (int p = 0; p<neuroneTest.neuronasCapaAnterior; p++) {
+		REQUIRE(neuroneTest.pesos[p] <= 10);
+		REQUIRE(neuroneTest.pesos[p] >= -10);
+	}
 }
