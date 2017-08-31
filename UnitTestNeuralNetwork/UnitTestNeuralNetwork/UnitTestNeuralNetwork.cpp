@@ -15,6 +15,7 @@ TEST_CASE("Creation d'un objet Neurona classique bien forme")
 	SECTION("Neurone simple")
 	{
 		Neurona neuroneTest = Neurona(1, 1, 1);
+
 		REQUIRE(neuroneTest.getValor() == 0);
 		REQUIRE(neuroneTest.posNeurona == 1);
 		REQUIRE(neuroneTest.posCapa == 1);
@@ -29,6 +30,7 @@ TEST_CASE("Creation d'un objet Neurona classique bien forme")
 	SECTION("Neurone plus complexe")
 	{
 		Neurona neuroneTest = Neurona(3, 3, 3);
+
 		REQUIRE(neuroneTest.getValor() == 0);
 		REQUIRE(neuroneTest.posNeurona == 3);
 		REQUIRE(neuroneTest.posCapa == 3);
