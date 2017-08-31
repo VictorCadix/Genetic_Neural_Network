@@ -22,4 +22,15 @@ TEST_CASE("Creation d'un objet Neurona classique bien forme")
 		REQUIRE(neuroneTest.pesos[p] <= 10);
 		REQUIRE(neuroneTest.pesos[p] >= -10);
 	}
+
+	neuroneTest = Neurona(3, 3, 3);
+	REQUIRE(neuroneTest.getValor() == 0);
+	REQUIRE(neuroneTest.posNeurona == 3);
+	REQUIRE(neuroneTest.posCapa == 3);
+	REQUIRE(neuroneTest.neuronasCapaAnterior == 3);
+
+	for (int p = 0; p<neuroneTest.neuronasCapaAnterior; p++) {
+		REQUIRE(neuroneTest.pesos[p] <= 10);
+		REQUIRE(neuroneTest.pesos[p] >= -10);
+	}
 }
