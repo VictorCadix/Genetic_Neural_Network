@@ -42,8 +42,6 @@ TEST_CASE("Creation d'un objet Neurona")
 		}
 	}
 
-
-
 	SECTION("Test creation neurone par defaut")
 	{
 		Neurona neuroneTest = Neurona();
@@ -79,5 +77,24 @@ TEST_CASE("Creation d'un objet Neurona")
 		REQUIRE(testNeuron.posCapa == 0);
 		REQUIRE(testNeuron.neuronasCapaAnterior == 0);
 		REQUIRE(testNeuron.pesos == NULL);
+	}
+}
+
+TEST_CASE("Fonction d'activation")
+{
+	SECTION("Fonction sigmoid")
+	{
+		Neurona test = Neurona(1, 1, 1);
+		test.setValor(3);
+		test.activate_sigmoid();
+		REQUIRE(abs(test.getValor() - 0.95) < 0.01);
+	}
+	
+	SECTION("Fonction tanh")
+	{
+		Neurona test = Neurona(1, 1, 1);
+		test.setValor(3);
+		test.activate_tanh();
+		REQUIRE(abs(test.getValor() - (-0.99)) < 0.01);
 	}
 }
