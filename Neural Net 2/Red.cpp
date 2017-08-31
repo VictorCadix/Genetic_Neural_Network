@@ -150,3 +150,13 @@ void Red::forwardProp()
 		}
 	}
 }
+
+void Red::genes2weights() {
+	for (int i = 0; i < this->nLayers - 1; i++) {
+		for (int j = 0; j < this->structure[i + 1] + 1; j++) { //[]+1 for bias
+			for (int k = 0; k < this->structure[i + 2]; k++) {
+				layers[i + 1][j].pesos[k] = genes[i][j][k];
+			}
+		}
+	}
+}

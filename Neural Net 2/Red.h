@@ -25,6 +25,7 @@ public:
 	double *** getGenes();
 	void setGenes(double***genes);
 	void setRandomGenes();
+	void genes2weights();
 	void forwardProp();
 	double getResult();
 };
