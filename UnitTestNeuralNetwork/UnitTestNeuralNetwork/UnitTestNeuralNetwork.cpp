@@ -54,3 +54,29 @@ TEST_CASE("Test creation neurone par defaut")
 	REQUIRE(neuroneTest.neuronasCapaAnterior == 0);
 	REQUIRE(neuroneTest.pesos == NULL);
 }
+
+TEST_CASE("Creation bias neuron")
+{
+	Neurona testNeuron = Neurona(2, 2, -1);
+
+	REQUIRE(testNeuron.getValor() == 1);
+	REQUIRE(testNeuron.posNeurona == 2);
+	REQUIRE(testNeuron.posCapa == 2);
+	REQUIRE(testNeuron.neuronasCapaAnterior == 0);
+	for (int p = 0; p<testNeuron.neuronasCapaAnterior; p++) {
+		REQUIRE(testNeuron.pesos[p] <= 10);
+		REQUIRE(testNeuron.pesos[p] >= -10);
+	}
+}
+
+TEST_CASE("Creation input neuron")
+// A COMPLETER
+{
+	Neurona testNeuron = Neurona(0, 2, 0);
+
+	REQUIRE(testNeuron.getValor() == 0);
+	REQUIRE(testNeuron.posNeurona == 2);
+	REQUIRE(testNeuron.posCapa == 0);
+	REQUIRE(testNeuron.neuronasCapaAnterior == 0);
+	REQUIRE(testNeuron.pesos == NULL);
+}
