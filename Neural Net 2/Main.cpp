@@ -14,6 +14,7 @@ void main(int argc, char* argv[]){
 
 	Red red(structure);
 	red.setRandomGenes();
+	red.genes2weights();
 	red.inputs(input);
 	red.print();
 	
