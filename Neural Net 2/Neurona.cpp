@@ -52,12 +52,6 @@ void Neurona::print(){
 	cout<<endl;
 }
 
-void Neurona::actualizaPesos(){
-	for (int a=0; a<this->neuronasCapaAnterior; a++){
-		this->pesos[a];
-	}
-}
-
 void Neurona::activate_sigmoid()
 {
 	double value = this->getValor();
