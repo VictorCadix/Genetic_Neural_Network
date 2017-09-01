@@ -40,7 +40,7 @@ Neurona::Neurona(int capa, int neurona,int nNeuronasCapaAnterior){
 
 	//Inicializa los pesos
 	for (int p=0; p<this->neuronasCapaAnterior; p++){
-		this->pesos[p] = (double)(rand() % 200)/10-10;
+		this->pesos[p] = p;
 	}
 }
 

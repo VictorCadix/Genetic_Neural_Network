@@ -157,7 +157,11 @@ TEST_CASE("Constructeur de Red")
 
 	SECTION("Poids correctement initialises")
 	{
-		//A completer
+		for (int i = 0; i < structure[2]+1; i++) {
+			for (int k = 0; k < red.layers[1][i].neuronasCapaAnterior + 1 ; k++ ){
+				CHECK (red.layers[1][i].pesos[k] == k);
+			}
+		}
 	}
 }
 
