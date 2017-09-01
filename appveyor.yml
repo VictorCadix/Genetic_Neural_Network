@@ -15,12 +15,4 @@ before_test:
   - cd UnitTestNeuralNetwork/x64/Debug
 
 test_script:
-  - ps: .\UnitTestNeuralNetwork.exe -r junit | Out-File ./results.xml
-
-after_test:
-  - ps: $wc = New-Object 'System.Net.WebClient'
-  - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\results.xml))
-
-on_failure:
-  - ps: $wc = New-Object 'System.Net.WebClient'
-  - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\results.xml))
+  - "UnitTestNeuralNetwork.exe"
