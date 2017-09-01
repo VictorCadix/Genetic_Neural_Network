@@ -15,4 +15,4 @@ before_test:
   - cd UnitTestNeuralNetwork/x64/Debug
 
 test_script:
-  - "UnitTestNeuralNetwork.exe -r junit"
+  - "UnitTestNeuralNetwork.exe"
