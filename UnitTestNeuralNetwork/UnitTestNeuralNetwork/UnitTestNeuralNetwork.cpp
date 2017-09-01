@@ -87,7 +87,7 @@ TEST_CASE("Fonction d'activation")
 		Neurona test = Neurona(1, 1, 1);
 		test.setValor(3);
 		test.activate_sigmoid();
-		CHECK(abs(test.getValor() - 0.95) < 0.01);
+		CHECK(test.getValor() == Approx(0.95257));
 	}
 	
 	SECTION("Fonction tanh")
@@ -95,7 +95,7 @@ TEST_CASE("Fonction d'activation")
 		Neurona test = Neurona(1, 1, 1);
 		test.setValor(3);
 		test.activate_tanh();
-		CHECK(abs(test.getValor() - (-0.99)) < 0.01);
+		CHECK(test.getValor() == Approx(-0.99505));
 	}
 }
 
