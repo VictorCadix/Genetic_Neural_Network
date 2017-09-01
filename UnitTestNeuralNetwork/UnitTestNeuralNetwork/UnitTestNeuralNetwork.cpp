@@ -190,6 +190,11 @@ TEST_CASE("Propagation correcte")
 	{
 		//A completer
 	}
+
+	SECTION("Les deux fonctions forwardProp doivent avoir le même resultat")
+	{
+		//A completer
+	}
 }
 
 TEST_CASE("La fonction getResult renvoie le bon resultat")
@@ -203,6 +208,10 @@ TEST_CASE("La fonction getResult renvoie le bon resultat")
 TEST_CASE("La fonction getGenes renvoie la valeur correcte")
 {
 	//A completer
+	int structure[] = { 3,2,3,1 };
+	Red red = Red(structure);
+	double*** ADN = red.getGenes();
+	ADN[0][2][2] == 4;
 }
 
 TEST_CASE("La fonction setGenes definit correctement l'attribut genes")
