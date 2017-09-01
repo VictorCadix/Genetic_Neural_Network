@@ -154,4 +154,59 @@ TEST_CASE("Constructeur de Red")
 			//REQUIRE(neuron.pesos == NULL);
 		}
 	}
+
+	SECTION("Poids correctement initialises")
+	{
+		//A completer
+	}
+}
+
+TEST_CASE("Reglage des inputs du reseau")
+{
+	int structure[] = { 3,2,3,1 };
+	Red red = Red(structure);
+	double input[] = { 1,3 };
+	red.inputs(input);
+
+	SECTION("Input neurons ont les valeurs attendues")
+	{
+		REQUIRE(red.layers[0][0].getValor() == 1);
+		REQUIRE(red.layers[0][1].getValor() == 3);
+	}
+}
+
+TEST_CASE("Propagation correcte")
+{
+	SECTION("Fonction geneForwardPropagation")
+	{
+		//A completer
+	}
+	
+	SECTION("Fonction forwardProp")
+	{
+		//A completer
+	}
+}
+
+TEST_CASE("La fonction getResult renvoie le bon resultat")
+{
+	int structure[] = { 3,2,3,1 };
+	Red red = Red(structure);
+	red.layers[red.nLayers - 1][0].setValor(6);
+	REQUIRE(red.getResult() == 6);
+}
+
+TEST_CASE("La fonction getGenes renvoie la valeur correcte")
+{
+	//A completer
+}
+
+TEST_CASE("La fonction setGenes definit correctement l'attribut genes")
+{
+	//A completer
+}
+
+TEST_CASE("La fonction setRandomGenes initialise correctement les genes")
+{
+	//A completer
 }
