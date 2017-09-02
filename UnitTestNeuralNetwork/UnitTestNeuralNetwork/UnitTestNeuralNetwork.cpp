@@ -183,6 +183,17 @@ TEST_CASE("Constructeur de Red")
 			}
 		}
 	}
+
+	SECTION("Attribut genes initialises")
+	{
+		for (int i = 0; i < red.nLayers - 1; i++) {
+			for (int j = 0; j < red.structure[i + 1] + 1; j++) {
+				for (int k = 0; k < red.structure[i + 2]; k++) {
+					CHECK(red.genes[i][j][k] == i + j + k);
+				}
+			}
+		}
+	}
 }
 
 TEST_CASE("Reglage des inputs du reseau")
@@ -327,10 +338,56 @@ TEST_CASE("La fonction getGenes renvoie la valeur correcte")
 
 TEST_CASE("La fonction setGenes definit correctement l'attribut genes")
 {
-	//A completer
+	std::cout.setstate(std::ios_base::failbit);
+
+	int structure[] = { 3,2,3,1 };
+	Red red = Red(structure);
+	
+	double ***myGenes = new double **[red.nLayers - 1];;
+	for (int i = 0; i < red.nLayers - 1; i++) {
+		myGenes[i] = new double*[structure[i + 1] + 1]; //[]+1 for bias
+		for (int j = 0; j < red.structure[i + 1] + 1; j++) { //same
+			myGenes[i][j] = new double[structure[i + 2]];
+		}
+	}
+
+	for (int i = 0; i < red.nLayers - 1; i++) {
+		for (int j = 0; j < red.structure[i + 1] + 1; j++) { //[]+1 for bias
+			for (int k = 0; k < red.structure[i + 2]; k++) {
+				myGenes[i][j][k] = 0.5;
+			}
+		}
+	}
+
+	red.setGenes(myGenes);
+
+	std::cout.clear();
+
+	for (int i = 0; i < red.nLayers - 1; i++) {
+		for (int j = 0; j < red.structure[i + 1] + 1; j++) {
+			for (int k = 0; k < red.structure[i + 2]; k++) {
+				CHECK(red.genes[i][j][k] == 0.5);
+			}
+		}
+	}
 }
 
 TEST_CASE("La fonction setRandomGenes initialise correctement les genes")
 {
-	//A completer
+	std::cout.setstate(std::ios_base::failbit);
+
+	int structure[] = { 3,2,3,1 };
+	Red red = Red(structure);
+	red.setRandomGenes();
+
+	std::cout.clear();
+
+	for (int i = 0; i < red.nLayers - 1; i++) {
+		for (int j = 0; j < red.structure[i + 1] + 1; j++) {
+			for (int k = 0; k < red.structure[i + 2]; k++) {
+				CHECK(red.genes[i][j][k] <= 1);
+				CHECK(red.genes[i][j][k] >= -1);
+			}
+		}
+	}
 }
