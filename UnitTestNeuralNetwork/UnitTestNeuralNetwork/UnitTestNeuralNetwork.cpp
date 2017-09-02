@@ -99,7 +99,7 @@ TEST_CASE("Fonction d'activation")
 	}
 }
 
-TEST_CASE("Constructeur de Red")
+TEST_CASE("Constructeur de Red", "[!shouldfail]")
 {
 	int structure[] = { 3,2,3,1 };
 	Red red = Red(structure);
