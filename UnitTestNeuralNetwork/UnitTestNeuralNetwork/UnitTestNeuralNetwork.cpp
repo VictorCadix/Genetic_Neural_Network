@@ -178,14 +178,11 @@ TEST_CASE("Constructeur de Red")
 
 	SECTION("Poids correctement initialises")
 	{
-		//===TEST DEPLACE EN FIN DE FICHIER===
-		/*
 		for (int i = 0; i < structure[2]+1; i++) {
 			for (int k = 0; k < red.layers[1][i].neuronasCapaAnterior + 1 ; k++ ){
 				CHECK (red.layers[1][i].pesos[k] == k);
 			}
 		}
-		*/
 	}
 }
 
@@ -268,22 +265,6 @@ TEST_CASE("La fonction setRandomGenes initialise correctement les genes")
 	ces tests etaient censes echouer. On pourra alors les remettre dans leur section
 	correspodantes.
 */
-
-TEST_CASE("Poids des neurones correctement initialisés", "[!shouldfail]")
-{
-	std::cout.setstate(std::ios_base::failbit);
-
-	int structure[] = { 3,2,3,1 };
-	Red red = Red(structure);
-
-	std::cout.clear();
-
-	for (int i = 0; i < structure[2] + 1; i++) {
-		for (int k = 0; k < red.layers[1][i].neuronasCapaAnterior + 1; k++) {
-			CHECK(red.layers[1][i].pesos[k] == k);
-		}
-	}
-}
 
 TEST_CASE("Poids des neurones bias ok", "[!shouldfail]")
 {
