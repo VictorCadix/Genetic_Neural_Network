@@ -54,7 +54,9 @@ void Red::inputs(double *in){
 
 void Red::print(){
 	for (int c=0; c<this->nLayers; c++){
-		for (int n=0; n<this->structure[c+1]; n++){
+		for (int n=0; n<this->structure[c+1]+1; n++){
+			if (c == nLayers - 1 && n == structure[c + 1])
+				break;
 			this->layers[c][n].print();
 			//cout<<"Neurona en : capa "<<Capas[c][n].posCapa<<", pos "<<Capas[c][n].posNeurona<<endl;
 		}
@@ -133,6 +135,7 @@ void Red::forwardProp()
 			if (currentNeuron.neuronasCapaAnterior == 0) //Is a bias?
 			{
 				cout << "Is a bias" << endl;
+				cout << "Value = " << currentNeuron.getValor() << endl;
 				break;
 			}
 
