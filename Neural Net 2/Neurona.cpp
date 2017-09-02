@@ -35,24 +35,28 @@ Neurona::Neurona(int capa, int neurona,int nNeuronasCapaAnterior){
 	else
 	{
 		this->valor = 0;
-		this->pesos = new double[neuronasCapaAnterior];
+		this->pesos = new double[neuronasCapaAnterior + 1]; //+1 bias
 		cout << "Neuron created: layer " << this->posCapa << ", pos " << this->posNeurona << endl;
-	}
-
-	//Inicializa los pesos
-	for (int p=0; p<this->neuronasCapaAnterior; p++){
-		this->pesos[p] = p;
+		
+		//Inicializa los pesos
+		for (int p = 0; p<this->neuronasCapaAnterior + 1; p++) {  //+1 bias
+			this->pesos[p] = p;
+		}
 	}
 }
 
 void Neurona::print(){
 	cout<<"Neurona: capa "<<this->posCapa<<" pos "<<this->posNeurona<<endl;
 	cout<<"Neuronas Capa anterior: "<<this->neuronasCapaAnterior<<endl;
-	cout<<"Pesos: ";
-	for (int a=0; a<this->neuronasCapaAnterior; a++){
-		cout<<this->pesos[a]<<"/";
+	if (neuronasCapaAnterior > 0) {
+		cout << "Pesos: ";
+		for (int a = 0; a < this->neuronasCapaAnterior + 1; a++) {
+			cout << this->pesos[a] << "/";
+		}
+		cout << endl << endl;
 	}
-	cout<<endl;
+	else
+		cout << "No weights" << endl << endl;
 }
 
 void Neurona::actualizaPesos(){
