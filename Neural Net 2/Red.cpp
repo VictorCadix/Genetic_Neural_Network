@@ -56,7 +56,9 @@ void Red::inputs(double *in){
 
 void Red::print(){
 	for (int c=0; c<this->nLayers; c++){
-		for (int n=0; n<this->structure[c+1]; n++){
+		for (int n=0; n<this->structure[c+1]+1; n++){
+			if (c == nLayers - 1 && n == structure[c + 1])
+				break;
 			this->layers[c][n].print();
 			//cout<<"Neurona en : capa "<<Capas[c][n].posCapa<<", pos "<<Capas[c][n].posNeurona<<endl;
 		}
@@ -132,9 +134,15 @@ void Red::forwardProp()
 
 			Neurona currentNeuron = currentLayer[j];
 			double value = 0;
+			if (currentNeuron.neuronasCapaAnterior == 0) //Is a bias?
+			{
+				cout << "Is a bias" << endl;
+				cout << "Value = " << currentNeuron.getValor() << endl;
+				break;
+			}
 
 			//For that neuron, we calculate it's value with the previous layer's neurons
-			for (int k = 0; k < currentNeuron.neuronasCapaAnterior; k++)
+			for (int k = 0; k < currentNeuron.neuronasCapaAnterior + 1; k++)
 			{
 				//In a previous neuron
 				double previousNeuronValue = previousLayer[k].getValor();
@@ -146,9 +154,19 @@ void Red::forwardProp()
 			currentNeuron.setValor(value);
 			layers[i][j].setValor(value);
 			layers[i][j].activate_sigmoid();
-			double test = currentNeuron.getValor();
+			double test = layers[i][j].getValor();
 			cout << "Neuron value : " << test << endl;
 			cout << endl;
+		}
+	}
+}
+
+void Red::genes2weights() {
+	for (int i = 0; i < this->nLayers - 1; i++) {
+		for (int j = 0; j < this->structure[i + 1]+1; j++) {//[]+1 for bias 
+			for (int k = 0; k < this->structure[i + 2]; k++) {
+				layers[i + 1][k].pesos[j] = genes[i][j][k];
+			}
 		}
 	}
 }
