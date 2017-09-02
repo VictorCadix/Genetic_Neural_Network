@@ -132,7 +132,7 @@ TEST_CASE("Constructeur de Red")
 		CHECK(structure[3] == 1);
 	}
 
-	SECTION("Attrbiut nombre de couches")
+	SECTION("Attrbut nombre de couches")
 	{
 		CHECK(red.nLayers == 3);
 	}
@@ -257,10 +257,3 @@ TEST_CASE("La fonction setRandomGenes initialise correctement les genes")
 {
 	//A completer
 }
-
-/*
-	Ces derniers tests echouent pour l'instant, ils ont ete mis a part pour autoriser
-	leur echec. Lorsque le probleme sera resolu, les tests echoueront pour rappeler que
-	ces tests etaient censes echouer. On pourra alors les remettre dans leur section
-	correspodantes.
-*/
