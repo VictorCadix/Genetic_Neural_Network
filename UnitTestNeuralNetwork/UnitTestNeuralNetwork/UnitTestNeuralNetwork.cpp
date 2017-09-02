@@ -333,7 +333,16 @@ TEST_CASE("La fonction getGenes renvoie la valeur correcte")
 
 	std::cout.clear();
 
-	CHECK(ADN[0][2][2] == 4);
+	for (int i = 0; i < structure[1]; i++)
+	{
+		for (int j = 0; j < structure[2]; j++)
+		{
+			for (int k = 0; k < structure[3]; k++)
+			{
+				CHECK(ADN[i][j][k] == i + j + k);
+			}
+		}
+	}
 }
 
 TEST_CASE("La fonction setGenes definit correctement l'attribut genes")
