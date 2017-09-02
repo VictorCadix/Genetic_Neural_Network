@@ -391,3 +391,38 @@ TEST_CASE("La fonction setRandomGenes initialise correctement les genes")
 		}
 	}
 }
+
+TEST_CASE("La fonction genes2weights fonctionne correctement")
+{
+	std::cout.setstate(std::ios_base::failbit);
+
+	int structure[] = { 3,2,3,1 };
+	Red red = Red(structure);
+
+	double ***myGenes = new double **[red.nLayers - 1];;
+	for (int i = 0; i < red.nLayers - 1; i++) {
+		myGenes[i] = new double*[structure[i + 1] + 1]; //[]+1 for bias
+		for (int j = 0; j < red.structure[i + 1] + 1; j++) { //same
+			myGenes[i][j] = new double[structure[i + 2]];
+		}
+	}
+
+	for (int i = 0; i < red.nLayers - 1; i++) {
+		for (int j = 0; j < red.structure[i + 1] + 1; j++) { //[]+1 for bias
+			for (int k = 0; k < red.structure[i + 2]; k++) {
+				myGenes[i][j][k] = i + j + k;
+			}
+		}
+	}
+
+	red.setGenes(myGenes);
+	red.genes2weights();
+
+	std::cout.clear();
+
+	for (int i = 0; i < structure[2] + 1; i++) {
+		for (int k = 0; k < red.layers[1][i].neuronasCapaAnterior; k++) {
+			CHECK(red.layers[1][i].pesos[k] == i + k);
+		}
+	}
+}
