@@ -410,7 +410,7 @@ TEST_CASE("La fonction genes2weights fonctionne correctement")
 	for (int i = 0; i < red.nLayers - 1; i++) {
 		for (int j = 0; j < red.structure[i + 1] + 1; j++) { //[]+1 for bias
 			for (int k = 0; k < red.structure[i + 2]; k++) {
-				myGenes[i][j][k] = i + j + k;
+				myGenes[i][j][k] = i + j + k + 7;
 			}
 		}
 	}
@@ -422,7 +422,7 @@ TEST_CASE("La fonction genes2weights fonctionne correctement")
 
 	for (int i = 0; i < structure[2] + 1; i++) {
 		for (int k = 0; k < red.layers[1][i].neuronasCapaAnterior; k++) {
-			CHECK(red.layers[1][i].pesos[k] == i + k);
+			CHECK(red.layers[1][i].pesos[k] == i + k + 7);
 		}
 	}
 }
