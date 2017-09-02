@@ -191,15 +191,20 @@ TEST_CASE("Reglage des inputs du reseau")
 
 	int structure[] = { 3,2,3,1 };
 	Red red = Red(structure);
-	double input[] = { 1,3 };
+	double input[] = { 2,3 };
 	red.inputs(input);
 
 	std::cout.clear();
 
 	SECTION("Input neurons ont les valeurs attendues")
 	{
-		CHECK(red.layers[0][0].getValor() == 1);
+		CHECK(red.layers[0][0].getValor() == 2);
 		CHECK(red.layers[0][1].getValor() == 3);
+	}
+
+	SECTION("Bias neuron non affecte par les inputs")
+	{
+		CHECK(red.layers[0][2].getValor() == 1);
 	}
 }
 
