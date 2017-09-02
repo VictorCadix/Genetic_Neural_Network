@@ -151,7 +151,7 @@ TEST_CASE("Constructeur de Red")
 			CHECK(neuron.getValor() == 1);
 			CHECK(neuron.posCapa == i);
 			CHECK(neuron.neuronasCapaAnterior == 0);
-			//CHECK(neuron.pesos == NULL);
+			CHECK(neuron.pesos == NULL);
 		}
 	}
 
@@ -211,7 +211,7 @@ TEST_CASE("La fonction getGenes renvoie la valeur correcte")
 	int structure[] = { 3,2,3,1 };
 	Red red = Red(structure);
 	double*** ADN = red.getGenes();
-	ADN[0][2][2] == 4;
+	CHECK(ADN[0][2][2] == 4);
 }
 
 TEST_CASE("La fonction setGenes definit correctement l'attribut genes")
