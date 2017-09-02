@@ -115,7 +115,7 @@ TEST_CASE("Fonction d'activation")
 	}
 }
 
-TEST_CASE("Constructeur de Red", "[!shouldfail]")
+TEST_CASE("Constructeur de Red")
 {
 	std::cout.setstate(std::ios_base::failbit);
 
@@ -171,17 +171,21 @@ TEST_CASE("Constructeur de Red", "[!shouldfail]")
 			CHECK(neuron.getValor() == 1);
 			CHECK(neuron.posCapa == i);
 			CHECK(neuron.neuronasCapaAnterior == 0);
-			CHECK(neuron.pesos == NULL);
+			//===TEST DEPLACE EN FIN DE FICHIER===
+			//CHECK(neuron.pesos == NULL);
 		}
 	}
 
 	SECTION("Poids correctement initialises")
 	{
+		//===TEST DEPLACE EN FIN DE FICHIER===
+		/*
 		for (int i = 0; i < structure[2]+1; i++) {
 			for (int k = 0; k < red.layers[1][i].neuronasCapaAnterior + 1 ; k++ ){
 				CHECK (red.layers[1][i].pesos[k] == k);
 			}
 		}
+		*/
 	}
 }
 
@@ -256,4 +260,44 @@ TEST_CASE("La fonction setGenes definit correctement l'attribut genes")
 TEST_CASE("La fonction setRandomGenes initialise correctement les genes")
 {
 	//A completer
+}
+
+/*
+	Ces derniers tests echouent pour l'instant, ils ont ete mis a part pour autoriser
+	leur echec. Lorsque le probleme sera resolu, les tests echoueront pour rappeler que
+	ces tests etaient censes echouer. On pourra alors les remettre dans leur section
+	correspodantes.
+*/
+
+TEST_CASE("Poids des neurones correctement initialisés", "[!shouldfail]")
+{
+	std::cout.setstate(std::ios_base::failbit);
+
+	int structure[] = { 3,2,3,1 };
+	Red red = Red(structure);
+
+	std::cout.clear();
+
+	for (int i = 0; i < structure[2] + 1; i++) {
+		for (int k = 0; k < red.layers[1][i].neuronasCapaAnterior + 1; k++) {
+			CHECK(red.layers[1][i].pesos[k] == k);
+		}
+	}
+}
+
+TEST_CASE("Poids des neurones bias ok", "[!shouldfail]")
+{
+	std::cout.setstate(std::ios_base::failbit);
+
+	int structure[] = { 3,2,3,1 };
+	Red red = Red(structure);
+
+	std::cout.clear();
+
+	for (int i = 0; i < red.nLayers - 1; i++)
+	{
+		Layer couche = red.layers[i];
+		Neurona neuron = couche[couche.size() - 1];
+		CHECK(neuron.pesos == NULL);
+	}
 }
