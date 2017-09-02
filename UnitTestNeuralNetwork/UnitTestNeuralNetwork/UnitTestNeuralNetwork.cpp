@@ -210,14 +210,86 @@ TEST_CASE("Reglage des inputs du reseau")
 
 TEST_CASE("Propagation correcte")
 {
-	SECTION("Fonction geneForwardPropagation")
+	SECTION("geneForwardPropagation donne un resultat plausible")
 	{
-		//A completer
+		std::cout.setstate(std::ios_base::failbit);
+
+		int structure[] = { 3,2,3,1 };
+		Red red = Red(structure);
+		double input[] = { 2,3 };
+		red.inputs(input);
+		red.geneForwardProp();
+		double result = red.getResult();
+
+		std::cout.clear();
+
+		CHECK(result > -100);
+		CHECK(result < 100);
 	}
 	
-	SECTION("Fonction forwardProp")
+	SECTION("forwardProp donne un resultat plausible")
 	{
-		//A completer
+		std::cout.setstate(std::ios_base::failbit);
+
+		int structure[] = { 3,2,3,1 };
+		Red red = Red(structure);
+		double input[] = { 2,3 };
+		red.inputs(input);
+		red.forwardProp();
+		double result = red.getResult();
+
+		std::cout.clear();
+
+		CHECK(result > -100);
+		CHECK(result < 100);
+	}
+
+	SECTION("geneForwardProp donne un resultat constant pour des entrees identiques")
+	{
+		std::cout.setstate(std::ios_base::failbit);
+
+		int structure[] = { 3,2,3,1 };
+		double input[] = { 2,3 };
+
+		Red red1 = Red(structure);
+		Red red2 = Red(structure);
+		
+		red1.inputs(input);
+		red2.inputs(input);
+
+		red1.geneForwardProp();
+		red2.geneForwardProp();
+
+		double result1 = red1.getResult();
+		double result2 = red2.getResult();
+
+		std::cout.clear();
+
+		CHECK(result1 == result2);
+	}
+
+	SECTION("forwardProp donne un resultat constant pour des entrees identiques")
+	{
+		std::cout.setstate(std::ios_base::failbit);
+
+		int structure[] = { 3,2,3,1 };
+		double input[] = { 2,3 };
+
+		Red red1 = Red(structure);
+		Red red2 = Red(structure);
+
+		red1.inputs(input);
+		red2.inputs(input);
+
+		red1.forwardProp();
+		red2.forwardProp();
+
+		double result1 = red1.getResult();
+		double result2 = red2.getResult();
+
+		std::cout.clear();
+
+		CHECK(result1 == result2);
 	}
 
 	SECTION("Les deux fonctions forwardProp doivent avoir le même resultat")
