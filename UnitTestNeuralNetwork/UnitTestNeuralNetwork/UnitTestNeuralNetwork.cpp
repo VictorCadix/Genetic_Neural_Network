@@ -311,6 +311,8 @@ TEST_CASE("Propagation correcte")
 		
 		Red red = Red(structure);
 		red.inputs(input);
+		red.genes2weights();
+
 		red.forwardProp();
 		double result1 = red.getResult();
 
