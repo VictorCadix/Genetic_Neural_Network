@@ -306,6 +306,19 @@ TEST_CASE("Propagation correcte")
 	SECTION("Les deux fonctions forwardProp doivent avoir le même resultat")
 	{
 		//A completer
+		int structure[] = { 4,4,3,3,1 };
+		double input[] = { 2,3,1,10 };
+		
+		Red red = Red(structure);
+		red.inputs(input);
+		red.forwardProp();
+		double result1 = red.getResult();
+
+		red.geneForwardProp();
+		double result2 = red.getResult();
+		
+		CHECK(result1 == result2);
+
 	}
 }
 
