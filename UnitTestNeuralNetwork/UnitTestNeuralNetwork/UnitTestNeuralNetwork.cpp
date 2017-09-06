@@ -76,7 +76,6 @@ TEST_CASE("Creation d'un objet Neurona")
 	}
 
 	SECTION("Creation input neuron")
-	// A COMPLETER
 	{
 		std::cout.setstate(std::ios_base::failbit);
 		Neurona testNeuron = Neurona(0, 2, 0);
@@ -342,7 +341,6 @@ TEST_CASE("La fonction getResult renvoie le bon resultat")
 
 TEST_CASE("La fonction getGenes renvoie la valeur correcte")
 {
-	//A completer
 	std::cout.setstate(std::ios_base::failbit);
 
 	int structure[] = { 3,2,3,1 };
