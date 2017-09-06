@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "Red.h"
 
 using namespace std;
@@ -85,6 +87,7 @@ void Red::geneForwardProp() {
 				result += layers[n][j].getValor()*genes[n][j][i];
 			}
 			layers[n + 1][i].setValor(result);
+			layers[n + 1][i].activate_sigmoid();
 		}
 	}
 	cout << endl << "Result = " << getResult() << endl;

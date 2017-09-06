@@ -17,7 +17,6 @@ public:
 	Neurona();
 	Neurona(int Capa, int Neurona, int nNeuronasCapaAnterior);
 	void print();
-	void actualizaPesos();
 	void activate_sigmoid();
 	void activate_tanh();
 	void setValor(double val){this->valor=val;}

@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "Neurona.h"
 
 using namespace std;
