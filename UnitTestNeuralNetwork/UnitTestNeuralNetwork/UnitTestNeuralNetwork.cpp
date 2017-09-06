@@ -303,9 +303,10 @@ TEST_CASE("Propagation correcte")
 		CHECK(result1 == result2);
 	}
 
-	SECTION("Les deux fonctions forwardProp doivent avoir le même resultat")
+	SECTION("Les deux fonctions forwardProp doivent avoir le meme resultat")
 	{
-		//A completer
+		std::cout.setstate(std::ios_base::failbit);
+
 		int structure[] = { 4,4,3,3,1 };
 		double input[] = { 2,3,1,10 };
 		
@@ -319,6 +320,8 @@ TEST_CASE("Propagation correcte")
 		red.geneForwardProp();
 		double result2 = red.getResult();
 		
+		std::cout.clear();
+
 		CHECK(result1 == result2);
 
 	}
