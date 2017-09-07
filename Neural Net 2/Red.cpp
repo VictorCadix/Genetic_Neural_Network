@@ -7,7 +7,10 @@ using namespace std;
 Red::Red(int *structure_in) {
 	this->structure = structure_in;
 	this->nLayers = structure[0];
+
+#ifdef PRINTDEBUG 
 	cout << "Net with " << this->nLayers << " layers" << endl;
+#endif
 
 	// Creation du reseau
 
@@ -45,13 +48,19 @@ Red::Red(int *structure_in) {
 }
 
 void Red::inputs(double *in){
-	cout<<endl<<"- Inputs -"<<endl;
+	#ifdef PRINTDEBUG 
+		cout<<endl<<"- Inputs -"<<endl;
+	#endif
 	
 	for( int e=0; e<this->structure[1]; e++){
 		this->layers[0][e].setValor(in[e]);
-		cout<<"Input "<<e<<" = "<<this->layers[0][e].getValor()<<endl;
+		#ifdef PRINTDEBUG 
+			cout<<"Input "<<e<<" = "<<this->layers[0][e].getValor()<<endl;
+		#endif
 	}
-	cout<<endl;
+	#ifdef PRINTDEBUG 
+		cout<<endl;
+	#endif
 }
 
 void Red::print(){
@@ -90,7 +99,9 @@ void Red::geneForwardProp() {
 			layers[n + 1][i].activate_sigmoid();
 		}
 	}
+#ifdef PRINTDEBUG 
 	cout << endl << "Result = " << getResult() << endl;
+#endif
 }
 
 double Red::getResult() {
@@ -121,7 +132,9 @@ void Red::forwardProp()
 
 	for (int i = 1; i < this->nLayers; i++)
 	{
+#ifdef PRINTDEBUG 
 		cout << endl << "== NEW LAYER ==" << endl;
+#endif
 		//In a layer
 		Layer currentLayer = this->layers[i];
 
@@ -131,14 +144,18 @@ void Red::forwardProp()
 		for (int j = 0; j < currentLayer.size(); j++)
 		{
 			//In a neuron
+#ifdef PRINTDEBUG 
 			cout << "NEURON" << endl;
+#endif
 
 			Neurona currentNeuron = currentLayer[j];
 			double value = 0;
 			if (currentNeuron.neuronasCapaAnterior == 0) //Is a bias?
 			{
+#ifdef PRINTDEBUG 
 				cout << "Is a bias" << endl;
 				cout << "Value = " << currentNeuron.getValor() << endl;
+#endif
 				break;
 			}
 
@@ -148,7 +165,9 @@ void Red::forwardProp()
 				//In a previous neuron
 				double previousNeuronValue = previousLayer[k].getValor();
 				value = value + (currentNeuron.pesos[k] * previousNeuronValue);
+#ifdef PRINTDEBUG 
 				cout << "Previous neuron value : " << previousNeuronValue << endl;
+#endif
 			}
 
 			//We save the value in the current neuron
@@ -156,8 +175,10 @@ void Red::forwardProp()
 			layers[i][j].setValor(value);
 			layers[i][j].activate_sigmoid();
 			double test = layers[i][j].getValor();
+#ifdef PRINTDEBUG 
 			cout << "Neuron value : " << test << endl;
 			cout << endl;
+#endif
 		}
 	}
 }
