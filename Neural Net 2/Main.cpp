@@ -21,7 +21,7 @@ void main(int argc, char* argv[]){
 	red.geneForwardProp();
 	red.forwardProp();
 
-	if (argv[1] == NULL)
+	if (argc > 1 && argv[1][0] != 's' && argv[2][0] != 's')
 	{
 		getch();
 	}

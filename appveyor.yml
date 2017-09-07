@@ -6,7 +6,7 @@ build:
 after_build:
   - cd "Neural Net 2"
   - cd "Debug"
-  - '"Neural Net 2.exe" 1'
+  - '"Neural Net 2.exe" s'
 
 before_test:
   - echo == Starting tests ==
