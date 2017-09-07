@@ -79,10 +79,12 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Neurona.cpp" />
+    <ClCompile Include="Population.cpp" />
     <ClCompile Include="Red.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Neurona.h" />
+    <ClInclude Include="Population.h" />
     <ClInclude Include="Red.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
