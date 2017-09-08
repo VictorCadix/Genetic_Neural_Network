@@ -9,6 +9,7 @@
 /* Include files of Neural Network project */
 #include "../../Neural Net 2/Neurona.h"
 #include "../../Neural Net 2/Red.h"
+#include "../../Neural Net 2/Population.h"
 
 TEST_CASE("Creation d'un objet Neurona")
 {
