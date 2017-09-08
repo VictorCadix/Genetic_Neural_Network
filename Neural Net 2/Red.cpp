@@ -4,6 +4,14 @@
 
 using namespace std;
 
+Red::Red()
+{
+	this->nLayers = 0;
+	this->nNeuronas = 0;
+	this->structure = NULL;
+	this->genes = NULL;
+}
+
 Red::Red(int *structure_in) {
 	this->structure = structure_in;
 	this->nLayers = structure[0];
