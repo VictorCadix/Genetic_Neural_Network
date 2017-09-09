@@ -17,7 +17,7 @@ public:
 	
 	vector <Layer> layers;
 
-	//Red();
+	Red();
 	Red(int *structure_in);
 	void inputs(double *in);
 	void print();
