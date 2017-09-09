@@ -9,7 +9,8 @@ class Population {
 	int population_size;
 	Red *population;
 
-
+	Population(int size, int* structure);
+	
 };
 
 #endif
