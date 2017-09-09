@@ -5,7 +5,9 @@
 using namespace std;
 
 Neurona::Neurona(){
+#ifdef PRINTDEBUG 
 	cout<<"Neurona creada (por defecto)"<<endl;
+#endif
 	this->valor = 0;
 	this->posCapa = 0;
 	this->posNeurona = 0;
@@ -23,14 +25,18 @@ Neurona::Neurona(int capa, int neurona,int nNeuronasCapaAnterior){
 		this->valor = 1;
 		this->pesos = NULL;
 		this->neuronasCapaAnterior = 0;
+#ifdef PRINTDEBUG 
 		cout << "Bias created: layer " << this->posCapa << ", pos " << this->posNeurona << endl;
+#endif
 	}
 
 	//Input neuron
 	else if (this->posCapa == 0) {
 		this->valor = 0;
 		this->pesos = NULL;
+#ifdef PRINTDEBUG 
 		cout << "Input neuron created: layer " << this->posCapa << ", pos " << this->posNeurona << endl;
+#endif
 	}
 
 	//Normal neuron
@@ -38,7 +44,9 @@ Neurona::Neurona(int capa, int neurona,int nNeuronasCapaAnterior){
 	{
 		this->valor = 0;
 		this->pesos = new double[neuronasCapaAnterior + 1]; //+1 bias
+#ifdef PRINTDEBUG 
 		cout << "Neuron created: layer " << this->posCapa << ", pos " << this->posNeurona << endl;
+#endif
 		
 		//Inicializa los pesos
 		for (int p = 0; p<this->neuronasCapaAnterior + 1; p++) {  //+1 bias

@@ -14,9 +14,7 @@ TEST_CASE("Creation d'un objet Neurona")
 {
 	SECTION("Neurone simple")
 	{
-		std::cout.setstate(std::ios_base::failbit);
 		Neurona neuroneTest = Neurona(1, 1, 1);
-		std::cout.clear();
 
 		CHECK(neuroneTest.getValor() == 0);
 		CHECK(neuroneTest.posNeurona == 1);
@@ -31,9 +29,7 @@ TEST_CASE("Creation d'un objet Neurona")
 
 	SECTION("Neurone plus complexe")
 	{
-		std::cout.setstate(std::ios_base::failbit);
 		Neurona neuroneTest = Neurona(3, 3, 3);
-		std::cout.clear();
 
 		CHECK(neuroneTest.getValor() == 0);
 		CHECK(neuroneTest.posNeurona == 3);
@@ -48,10 +44,8 @@ TEST_CASE("Creation d'un objet Neurona")
 
 	SECTION("Test creation neurone par defaut")
 	{
-		std::cout.setstate(std::ios_base::failbit);
 		Neurona neuroneTest = Neurona();
-		std::cout.clear();
-
+		
 		CHECK(neuroneTest.getValor() == 0);
 		CHECK(neuroneTest.posNeurona == 0);
 		CHECK(neuroneTest.posCapa == 0);
@@ -60,11 +54,9 @@ TEST_CASE("Creation d'un objet Neurona")
 	}
 
 	SECTION("Creation bias neuron")
-	{
-		std::cout.setstate(std::ios_base::failbit);
+	{		
 		Neurona testNeuron = Neurona(2, 2, -1);
-		std::cout.clear();
-
+		
 		CHECK(testNeuron.getValor() == 1);
 		CHECK(testNeuron.posNeurona == 2);
 		CHECK(testNeuron.posCapa == 2);
@@ -76,11 +68,9 @@ TEST_CASE("Creation d'un objet Neurona")
 	}
 
 	SECTION("Creation input neuron")
-	{
-		std::cout.setstate(std::ios_base::failbit);
+	{		
 		Neurona testNeuron = Neurona(0, 2, 0);
-		std::cout.clear();
-
+		
 		CHECK(testNeuron.getValor() == 0);
 		CHECK(testNeuron.posNeurona == 2);
 		CHECK(testNeuron.posCapa == 0);
@@ -93,21 +83,17 @@ TEST_CASE("Fonction d'activation")
 {
 	SECTION("Fonction sigmoid")
 	{
-		std::cout.setstate(std::ios_base::failbit);
 		Neurona test = Neurona(1, 1, 1);
-		std::cout.clear();
-
+		
 		test.setValor(3);
 		test.activate_sigmoid();
 		CHECK(test.getValor() == Approx(0.95257));
 	}
 	
 	SECTION("Fonction tanh")
-	{
-		std::cout.setstate(std::ios_base::failbit);
+	{		
 		Neurona test = Neurona(1, 1, 1);
-		std::cout.clear();
-
+		
 		test.setValor(3);
 		test.activate_tanh();
 		CHECK(test.getValor() == Approx(-0.99505));
@@ -116,13 +102,9 @@ TEST_CASE("Fonction d'activation")
 
 TEST_CASE("Constructeur de Red")
 {
-	std::cout.setstate(std::ios_base::failbit);
-
 	int structure[] = { 3,2,3,1 };
 	Red red = Red(structure);
-
-	std::cout.clear();
-
+		
 	SECTION("Attribut structure correct")
 	{
 		CHECK(structure[0] == 3);
@@ -197,15 +179,11 @@ TEST_CASE("Constructeur de Red")
 
 TEST_CASE("Reglage des inputs du reseau")
 {
-	std::cout.setstate(std::ios_base::failbit);
-
 	int structure[] = { 3,2,3,1 };
 	Red red = Red(structure);
 	double input[] = { 2,3 };
 	red.inputs(input);
-
-	std::cout.clear();
-
+		
 	SECTION("Input neurons ont les valeurs attendues")
 	{
 		CHECK(red.layers[0][0].getValor() == 2);
@@ -222,42 +200,32 @@ TEST_CASE("Propagation correcte")
 {
 	SECTION("geneForwardPropagation donne un resultat plausible")
 	{
-		std::cout.setstate(std::ios_base::failbit);
-
 		int structure[] = { 3,2,3,1 };
 		Red red = Red(structure);
 		double input[] = { 2,3 };
 		red.inputs(input);
 		red.geneForwardProp();
 		double result = red.getResult();
-
-		std::cout.clear();
-
+		
 		CHECK(result > -100);
 		CHECK(result < 100);
 	}
 	
 	SECTION("forwardProp donne un resultat plausible")
 	{
-		std::cout.setstate(std::ios_base::failbit);
-
 		int structure[] = { 3,2,3,1 };
 		Red red = Red(structure);
 		double input[] = { 2,3 };
 		red.inputs(input);
 		red.forwardProp();
 		double result = red.getResult();
-
-		std::cout.clear();
-
+		
 		CHECK(result > -100);
 		CHECK(result < 100);
 	}
 
 	SECTION("geneForwardProp donne un resultat constant pour des entrees identiques")
 	{
-		std::cout.setstate(std::ios_base::failbit);
-
 		int structure[] = { 3,2,3,1 };
 		double input[] = { 2,3 };
 
@@ -272,16 +240,12 @@ TEST_CASE("Propagation correcte")
 
 		double result1 = red1.getResult();
 		double result2 = red2.getResult();
-
-		std::cout.clear();
-
+		
 		CHECK(result1 == result2);
 	}
 
 	SECTION("forwardProp donne un resultat constant pour des entrees identiques")
 	{
-		std::cout.setstate(std::ios_base::failbit);
-
 		int structure[] = { 3,2,3,1 };
 		double input[] = { 2,3 };
 
@@ -296,19 +260,15 @@ TEST_CASE("Propagation correcte")
 
 		double result1 = red1.getResult();
 		double result2 = red2.getResult();
-
-		std::cout.clear();
-
+		
 		CHECK(result1 == result2);
 	}
 
 	SECTION("Les deux fonctions forwardProp doivent avoir le meme resultat")
 	{
-		std::cout.setstate(std::ios_base::failbit);
-
 		int structure[] = { 4,4,3,3,1 };
 		double input[] = { 2,3,1,10 };
-		
+
 		Red red = Red(structure);
 		red.inputs(input);
 		red.genes2weights();
@@ -318,37 +278,26 @@ TEST_CASE("Propagation correcte")
 
 		red.geneForwardProp();
 		double result2 = red.getResult();
-		
-		std::cout.clear();
 
 		CHECK(result1 == result2);
-
 	}
 }
 
 TEST_CASE("La fonction getResult renvoie le bon resultat")
 {
-	std::cout.setstate(std::ios_base::failbit);
-
 	int structure[] = { 3,2,3,1 };
 	Red red = Red(structure);
 	red.layers[red.nLayers - 1][0].setValor(6);
-
-	std::cout.clear();
-
+	
 	CHECK(red.getResult() == 6);
 }
 
 TEST_CASE("La fonction getGenes renvoie la valeur correcte")
 {
-	std::cout.setstate(std::ios_base::failbit);
-
 	int structure[] = { 3,2,3,1 };
 	Red red = Red(structure);
 	double*** ADN = red.getGenes();
-
-	std::cout.clear();
-
+	
 	for (int i = 0; i < structure[1]; i++)
 	{
 		for (int j = 0; j < structure[2]; j++)
@@ -363,8 +312,6 @@ TEST_CASE("La fonction getGenes renvoie la valeur correcte")
 
 TEST_CASE("La fonction setGenes definit correctement l'attribut genes")
 {
-	std::cout.setstate(std::ios_base::failbit);
-
 	int structure[] = { 3,2,3,1 };
 	Red red = Red(structure);
 	
@@ -385,9 +332,7 @@ TEST_CASE("La fonction setGenes definit correctement l'attribut genes")
 	}
 
 	red.setGenes(myGenes);
-
-	std::cout.clear();
-
+	
 	for (int i = 0; i < red.nLayers - 1; i++) {
 		for (int j = 0; j < red.structure[i + 1] + 1; j++) {
 			for (int k = 0; k < red.structure[i + 2]; k++) {
@@ -399,14 +344,10 @@ TEST_CASE("La fonction setGenes definit correctement l'attribut genes")
 
 TEST_CASE("La fonction setRandomGenes initialise correctement les genes")
 {
-	std::cout.setstate(std::ios_base::failbit);
-
 	int structure[] = { 3,2,3,1 };
 	Red red = Red(structure);
 	red.setRandomGenes();
-
-	std::cout.clear();
-
+	
 	for (int i = 0; i < red.nLayers - 1; i++) {
 		for (int j = 0; j < red.structure[i + 1] + 1; j++) {
 			for (int k = 0; k < red.structure[i + 2]; k++) {
@@ -419,8 +360,6 @@ TEST_CASE("La fonction setRandomGenes initialise correctement les genes")
 
 TEST_CASE("La fonction genes2weights fonctionne correctement")
 {
-	std::cout.setstate(std::ios_base::failbit);
-
 	int structure[] = { 3,2,3,1 };
 	Red red = Red(structure);
 
@@ -442,9 +381,7 @@ TEST_CASE("La fonction genes2weights fonctionne correctement")
 
 	red.setGenes(myGenes);
 	red.genes2weights();
-
-	std::cout.clear();
-
+	
 	for (int i = 0; i < structure[2] + 1; i++) {
 		for (int k = 0; k < red.layers[1][i].neuronasCapaAnterior; k++) {
 			CHECK(red.layers[1][i].pesos[k] == i + k + 7);
