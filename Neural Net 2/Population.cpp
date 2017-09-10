@@ -17,3 +17,15 @@ Population::Population(int *structure, int size)
 		this->individus[i] = red;
 	}
 }
+
+void Population::inputs(double *in) {
+	for (int i = 0; i < population_size; i++) {
+		individus[i].inputs(in);
+	}
+}
+
+void Population::solve() {
+	for (int i = 0; i < population_size; i++) {
+		individus[i].geneForwardProp();
+	}
+}
