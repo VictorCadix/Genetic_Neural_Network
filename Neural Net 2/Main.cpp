@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "Red.h"
+#include "Population.h"
 
 using namespace std;
 
