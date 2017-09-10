@@ -10,6 +10,7 @@ class Population
 	public:
 		int population_size;
 		Red* individus;
+	int mutation_rate; //in %
 
 		Population(int* structure, int size);
 };
