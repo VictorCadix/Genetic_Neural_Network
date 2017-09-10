@@ -7,11 +7,13 @@ using namespace std;
 
 class Population
 {
-	public:
-		int population_size;
-		Red* individus;
 	int mutation_rate; //in %
+public:
+	int population_size;
+	Red* individus;
 
-		Population(int* structure, int size);
+	Population(int* structure, int size);
+	void inputs (double *in);
+	void solve();
 };
 #endif
