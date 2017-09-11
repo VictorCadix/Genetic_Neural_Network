@@ -517,6 +517,31 @@ TEST_CASE("Constructeur de Population correct")
 			}
 		}
 	}
+}
+
+TEST_CASE("Reglage des inputs de la population")
+{
+	int structure[] = { 3,2,3,1 };
+	Population maPop = Population(structure, 10);
+	double input[] = { 2,3 };
+	maPop.inputs(input);
+
+	SECTION("Input neurons ont les valeurs attendues")
+	{
+		for (int i = 0; i < maPop.population_size; i++) {
+			CHECK(maPop.individus[i].layers[0][0].getValor() == 2);
+			CHECK(maPop.individus[i].layers[0][1].getValor() == 3);
+		}
+	}
+
+	SECTION("Bias neuron non affecte par les inputs")
+	{
+		for (int i = 0; i < maPop.population_size; i++) {
+			CHECK(maPop.individus[i].layers[0][2].getValor() == 1);
+		}
+	}
+}
+
 TEST_CASE("Population solve donne des resultats plausibles")
 {
 	int structure[] = { 3,2,3,1 };
