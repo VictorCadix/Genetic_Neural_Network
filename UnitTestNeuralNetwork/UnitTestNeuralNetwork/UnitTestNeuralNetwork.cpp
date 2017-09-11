@@ -470,9 +470,9 @@ TEST_CASE("Constructeur de Population correct")
 
 	SECTION("La population contient bien des Red differentes")
 	{
-		for (int i = 0; i < 10; i++)
+		for (int r = 0; r < 10; r++)
 		{
-			Red red = maPop.individus[i];
+			Red red = maPop.individus[r];
 
 			for (int i = 0; i < red.nLayers - 1; i++) {
 				for (int j = 0; j < red.structure[i + 1] + 1; j++) {
