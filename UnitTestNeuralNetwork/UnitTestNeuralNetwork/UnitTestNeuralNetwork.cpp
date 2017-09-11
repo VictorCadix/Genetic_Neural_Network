@@ -517,4 +517,17 @@ TEST_CASE("Constructeur de Population correct")
 			}
 		}
 	}
+TEST_CASE("Population solve donne des resultats plausibles")
+{
+	int structure[] = { 3,2,3,1 };
+	Population maPop = Population(structure, 10);
+	double inputs[] = { 2,3 };
+	maPop.inputs(inputs);
+	maPop.solve();
+
+	for (int i = 0; i < maPop.population_size; i++)
+	{
+		CHECK(maPop.individus[i].getResult() <= 1);
+		CHECK(maPop.individus[i].getResult() >= 0);
+	}
 }
