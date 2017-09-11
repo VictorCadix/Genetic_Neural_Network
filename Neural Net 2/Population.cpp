@@ -10,10 +10,8 @@ Population::Population(int *structure, int size)
 
 	for (int i = 0; i < this->population_size; i++)
 	{
-		Red red = Red(structure);
-		red.setRandomGenes();
-
-		this->individus[i] = red;
+		this->individus[i] = Red(structure);
+		this->individus[i].setRandomGenes();
 	}
 }
 
