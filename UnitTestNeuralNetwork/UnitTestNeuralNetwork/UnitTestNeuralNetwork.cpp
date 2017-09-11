@@ -468,6 +468,11 @@ TEST_CASE("Constructeur de Population correct")
 	int structure[] = { 3,2,3,1 };
 	Population maPop = Population(structure, 10);
 
+	SECTION("Population taille correcte")
+	{
+		CHECK(maPop.population_size == 10);
+	}
+
 	SECTION("La population contient bien des Red bien formees")
 	{
 		for (int r = 0; r < 10; r++)
