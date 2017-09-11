@@ -20,12 +20,12 @@ Population::Population(int *structure, int size)
 
 void Population::inputs(double *in) {
 	for (int i = 0; i < population_size; i++) {
-		individus[i].inputs(in);
+		this->individus[i].inputs(in);
 	}
 }
 
 void Population::solve() {
 	for (int i = 0; i < population_size; i++) {
-		individus[i].geneForwardProp();
+		this->individus[i].geneForwardProp();
 	}
 }
