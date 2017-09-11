@@ -473,6 +473,17 @@ TEST_CASE("Constructeur de Population correct")
 		CHECK(maPop.population_size == 10);
 	}
 
+	SECTION("Structure red correct")
+	{
+		for (int i = 0; i < maPop.population_size; i++)
+		{
+			CHECK(maPop.individus[i].structure[0] == 3);
+			CHECK(maPop.individus[i].structure[1] == 2);
+			CHECK(maPop.individus[i].structure[2] == 3);
+			CHECK(maPop.individus[i].structure[3] == 1);
+		}
+	}
+
 	SECTION("La population contient bien des Red bien formees")
 	{
 		for (int r = 0; r < 10; r++)
