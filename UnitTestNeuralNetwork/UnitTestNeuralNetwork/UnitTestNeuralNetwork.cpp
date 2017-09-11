@@ -468,7 +468,7 @@ TEST_CASE("Constructeur de Population correct")
 	int structure[] = { 3,2,3,1 };
 	Population maPop = Population(structure, 10);
 
-	SECTION("La population contient bien des Red differentes")
+	SECTION("La population contient bien des Red bien formees")
 	{
 		for (int r = 0; r < 10; r++)
 		{
@@ -479,6 +479,23 @@ TEST_CASE("Constructeur de Population correct")
 					for (int k = 0; k < red.structure[i + 2]; k++) {
 						CHECK(red.genes[i][j][k] <= 1);
 						CHECK(red.genes[i][j][k] >= -1);
+					}
+				}
+			}
+		}
+	}
+
+	SECTION("La population contient des Red differents")
+	{
+		for (int r = 1; r < 10; r++)
+		{
+			Red red = maPop.individus[r];
+			Red redPrecedente = maPop.individus[r - 1];
+
+			for (int i = 0; i < red.nLayers - 1; i++) {
+				for (int j = 0; j < red.structure[i + 1] + 1; j++) {
+					for (int k = 0; k < red.structure[i + 2]; k++) {
+						CHECK(red.genes[i][j][k] != redPrecedente.genes[i][j][k]);
 					}
 				}
 			}
