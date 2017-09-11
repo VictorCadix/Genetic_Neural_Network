@@ -115,6 +115,16 @@ TEST_CASE("Fonction d'activation")
 	}
 }
 
+TEST_CASE("Constructeur par defaut de Red")
+{
+	Red red = Red();
+
+	CHECK(red.nLayers == 0);
+	CHECK(red.nNeuronas == 0);
+	CHECK(red.structure == NULL);
+	CHECK(red.genes == NULL);
+}
+
 TEST_CASE("Constructeur de Red")
 {
 	std::cout.setstate(std::ios_base::failbit);
