@@ -463,23 +463,23 @@ TEST_CASE("La fonction genes2weights fonctionne correctement")
 	}
 }
 
-TEST_CASE("La population contient bien des Red differentes")
+TEST_CASE("Constructeur de Population correct")
 {
 	int structure[] = { 3,2,3,1 };
-
-	std::cout.setstate(std::ios_base::failbit);
 	Population maPop = Population(structure, 10);
-	std::cout.clear();
 
-	for (int i = 0; i < 10; i++)
+	SECTION("La population contient bien des Red differentes")
 	{
-		Red red = maPop.individus[i];
+		for (int i = 0; i < 10; i++)
+		{
+			Red red = maPop.individus[i];
 
-		for (int i = 0; i < red.nLayers - 1; i++) {
-			for (int j = 0; j < red.structure[i + 1] + 1; j++) {
-				for (int k = 0; k < red.structure[i + 2]; k++) {
-					CHECK(red.genes[i][j][k] <= 1);
-					CHECK(red.genes[i][j][k] >= -1);
+			for (int i = 0; i < red.nLayers - 1; i++) {
+				for (int j = 0; j < red.structure[i + 1] + 1; j++) {
+					for (int k = 0; k < red.structure[i + 2]; k++) {
+						CHECK(red.genes[i][j][k] <= 1);
+						CHECK(red.genes[i][j][k] >= -1);
+					}
 				}
 			}
 		}
