@@ -12,7 +12,6 @@ Population::Population(int *structure, int size)
 	{
 		Red red = Red(structure);
 		red.setRandomGenes();
-		red.genes2weights();
 
 		this->individus[i] = red;
 	}
