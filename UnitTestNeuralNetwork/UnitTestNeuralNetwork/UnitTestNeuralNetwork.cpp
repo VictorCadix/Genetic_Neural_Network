@@ -9,6 +9,7 @@
 /* Include files of Neural Network project */
 #include "../../Neural Net 2/Neurona.h"
 #include "../../Neural Net 2/Red.h"
+#include "../../Neural Net 2/Population.h"
 
 TEST_CASE("Creation d'un objet Neurona")
 {
@@ -98,6 +99,16 @@ TEST_CASE("Fonction d'activation")
 		test.activate_tanh();
 		CHECK(test.getValor() == Approx(-0.99505));
 	}
+}
+
+TEST_CASE("Constructeur par defaut de Red")
+{
+	Red red = Red();
+
+	CHECK(red.nLayers == 0);
+	CHECK(red.nNeuronas == 0);
+	CHECK(red.structure == NULL);
+	CHECK(red.genes == NULL);
 }
 
 TEST_CASE("Constructeur de Red")
@@ -386,5 +397,99 @@ TEST_CASE("La fonction genes2weights fonctionne correctement")
 		for (int k = 0; k < red.layers[1][i].neuronasCapaAnterior; k++) {
 			CHECK(red.layers[1][i].pesos[k] == i + k + 7);
 		}
+	}
+}
+
+TEST_CASE("Constructeur de Population correct")
+{
+	int structure[] = { 3,2,3,1 };
+	Population maPop = Population(structure, 10);
+
+	SECTION("Population taille correcte")
+	{
+		CHECK(maPop.population_size == 10);
+	}
+
+	SECTION("Structure red correct")
+	{
+		for (int i = 0; i < maPop.population_size; i++)
+		{
+			CHECK(maPop.individus[i].structure[0] == 3);
+			CHECK(maPop.individus[i].structure[1] == 2);
+			CHECK(maPop.individus[i].structure[2] == 3);
+			CHECK(maPop.individus[i].structure[3] == 1);
+		}
+	}
+
+	SECTION("La population contient bien des Red bien formees")
+	{
+		for (int r = 0; r < 10; r++)
+		{
+			Red red = maPop.individus[r];
+
+			for (int i = 0; i < red.nLayers - 1; i++) {
+				for (int j = 0; j < red.structure[i + 1] + 1; j++) {
+					for (int k = 0; k < red.structure[i + 2]; k++) {
+						CHECK(red.genes[i][j][k] <= 1);
+						CHECK(red.genes[i][j][k] >= -1);
+					}
+				}
+			}
+		}
+	}
+
+	SECTION("La population contient des Red differents")
+	{
+		for (int r = 1; r < 10; r++)
+		{
+			Red red = maPop.individus[r];
+			Red redPrecedente = maPop.individus[r - 1];
+
+			for (int i = 0; i < red.nLayers - 1; i++) {
+				for (int j = 0; j < red.structure[i + 1] + 1; j++) {
+					for (int k = 0; k < red.structure[i + 2]; k++) {
+						CHECK(red.genes[i][j][k] != redPrecedente.genes[i][j][k]);
+					}
+				}
+			}
+		}
+	}
+}
+
+TEST_CASE("Reglage des inputs de la population")
+{
+	int structure[] = { 3,2,3,1 };
+	Population maPop = Population(structure, 10);
+	double input[] = { 2,3 };
+	maPop.inputs(input);
+
+	SECTION("Input neurons ont les valeurs attendues")
+	{
+		for (int i = 0; i < maPop.population_size; i++) {
+			CHECK(maPop.individus[i].layers[0][0].getValor() == 2);
+			CHECK(maPop.individus[i].layers[0][1].getValor() == 3);
+		}
+	}
+
+	SECTION("Bias neuron non affecte par les inputs")
+	{
+		for (int i = 0; i < maPop.population_size; i++) {
+			CHECK(maPop.individus[i].layers[0][2].getValor() == 1);
+		}
+	}
+}
+
+TEST_CASE("Population solve donne des resultats plausibles")
+{
+	int structure[] = { 3,2,3,1 };
+	Population maPop = Population(structure, 10);
+	double inputs[] = { 2,3 };
+	maPop.inputs(inputs);
+	maPop.solve();
+
+	for (int i = 0; i < maPop.population_size; i++)
+	{
+		CHECK(maPop.individus[i].getResult() <= 1);
+		CHECK(maPop.individus[i].getResult() >= 0);
 	}
 }

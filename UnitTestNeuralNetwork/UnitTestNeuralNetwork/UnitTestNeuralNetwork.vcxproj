@@ -147,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Neural Net 2\Neurona.h" />
+    <ClInclude Include="..\..\Neural Net 2\Population.h" />
     <ClInclude Include="..\..\Neural Net 2\Red.h" />
     <ClInclude Include="catch.hpp" />
     <ClInclude Include="stdafx.h" />
@@ -154,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Neural Net 2\Neurona.cpp" />
+    <ClCompile Include="..\..\Neural Net 2\Population.cpp" />
     <ClCompile Include="..\..\Neural Net 2\Red.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

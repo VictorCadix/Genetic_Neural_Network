@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "Red.h"
+#include "Population.h"
 
 using namespace std;
 
@@ -12,14 +13,9 @@ void main(int argc, char* argv[]){
 	int structure[]={3,2,3,1};
 	double input[]={1,3};
 
-	Red red(structure);
-	red.setRandomGenes();
-	red.genes2weights();
-	red.inputs(input);
-	red.print();
-	
-	red.geneForwardProp();
-	red.forwardProp();
+	Population population(structure, 10);
+	population.inputs(input);
+	population.solve();
 
 	if (argv[1] == NULL)
 	{
