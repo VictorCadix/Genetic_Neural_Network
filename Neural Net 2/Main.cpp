@@ -12,10 +12,11 @@ void main(int argc, char* argv[]){
 
 	int structure[]={3,2,3,1};
 	double input[]={1,3};
+	double expected_result[] = { 0.2 };
 
 	Population population(structure, 10);
 	population.inputs(input);
-	population.solve();
+	population.solve(expected_result);
 
 	if (argv[1] == NULL)
 	{
