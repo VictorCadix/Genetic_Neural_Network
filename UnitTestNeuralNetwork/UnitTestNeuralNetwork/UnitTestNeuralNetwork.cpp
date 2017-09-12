@@ -484,8 +484,9 @@ TEST_CASE("Population solve donne des resultats plausibles")
 	int structure[] = { 3,2,3,1 };
 	Population maPop = Population(structure, 10);
 	double inputs[] = { 2,3 };
+	double expected_result[] = { 2 };
 	maPop.inputs(inputs);
-	maPop.solve();
+	maPop.solve(expected_result);
 
 	for (int i = 0; i < maPop.population_size; i++)
 	{
