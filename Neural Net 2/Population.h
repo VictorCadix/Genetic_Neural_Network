@@ -14,6 +14,6 @@ public:
 
 	Population(int* structure, int size);
 	void inputs (double *in);
-	void evaluate(double* expected_result);
+	void evaluate(double** in, double** expected_result);
 };
 #endif

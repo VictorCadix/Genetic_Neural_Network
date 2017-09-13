@@ -21,12 +21,25 @@ void Population::inputs(double *in) {
 	}
 }
 
-void Population::evaluate(double *expected_result) {
-	for (int i = 0; i < population_size; i++) {
-		this->individus[i].geneForwardProp();
-		individus[i].error.push_back(abs(individus[i].getResult() - *expected_result));
+void Population::evaluate(double** in, double** expected_result) {
+
+	//Calculate the number of samples (Not working!!!)
+	int nSamples = 0;
+	while (in[nSamples] != NULL) {
+		nSamples++;
+	}
+	//For each sample data test
+	for (int sample = 0; sample < nSamples; sample++) {
+
+		//seting the inputs
+		for (int i = 0; i < population_size; i++) {
+			this->individus[i].inputs(in[sample]);
+			this->individus[i].geneForwardProp();
+			individus[i].error.push_back(abs(individus[i].getResult() - *expected_result[sample]));
+
 #ifdef PRINTDEBUG 
-		cout << "error = " << individus[i].error.back() << endl;
+			cout << "error = " << individus[i].error.back() << endl;
 #endif
+		}
 	}
 }

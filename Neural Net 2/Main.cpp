@@ -11,15 +11,34 @@ void main(int argc, char* argv[]) {
 	srand((unsigned int)time(NULL));
 
 	int structure[] = { 3,2,3,1 };
-	double input[2][2] = { { 0.1,0.3 }, { 0.2, 0.6 } };
+	
+	//Inputs
+	double** input;
 
-	double expected_result[2][1] = { { 0.2 }, { 0.4 } };
+	input = new double *[2];
+	for (int i = 0; i < 2; i++) {
+		input[i] = new double[2];
+	}
+	input[0][0] = 0.1;
+	input[0][1] = 0.3;
+	input[1][0] = 0.2;
+	input[1][1] = 0.6;
+
+	//Outputs
+	double** expected_result;
+	
+	expected_result = new double*[2];
+	for (int i = 0; i < 2; i++) {
+		expected_result[i] = new double[1];
+	}
+	expected_result[0][0] = 0.2;
+	expected_result[1][0] = 0.4;
+	
 
 	Population population(structure, 10);
-	population.inputs(input[0]);
-	population.evaluate(expected_result[0]);
-	population.inputs(input[1]);
-	population.evaluate(expected_result[1]);
+
+	population.evaluate(input, expected_result);
+
 
 	if (argv[1] == NULL)
 	{
