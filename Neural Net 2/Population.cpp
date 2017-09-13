@@ -25,6 +25,9 @@ void Population::evaluate(int nSamples,double** in, double** expected_result) {
 
 	//For each sample data test
 	for (int sample = 0; sample < nSamples; sample++) {
+#ifdef PRINTDEBUG 
+		cout <<endl<< "   Sample " << sample << endl;
+#endif
 
 		//seting the inputs
 		for (int i = 0; i < population_size; i++) {
@@ -33,7 +36,7 @@ void Population::evaluate(int nSamples,double** in, double** expected_result) {
 			individus[i].error.push_back(abs(individus[i].getResult() - *expected_result[sample]));
 
 #ifdef PRINTDEBUG 
-			cout << "error = " << individus[i].error.back() << endl;
+			cout << "error indiv "<<i<<" = " << individus[i].error.back() << endl;
 #endif
 		}
 	}
