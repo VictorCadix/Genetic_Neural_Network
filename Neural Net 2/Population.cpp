@@ -21,13 +21,8 @@ void Population::inputs(double *in) {
 	}
 }
 
-void Population::evaluate(double** in, double** expected_result) {
+void Population::evaluate(int nSamples,double** in, double** expected_result) {
 
-	//Calculate the number of samples (Not working!!!)
-	int nSamples = 0;
-	while (in[nSamples] != NULL) {
-		nSamples++;
-	}
 	//For each sample data test
 	for (int sample = 0; sample < nSamples; sample++) {
 
