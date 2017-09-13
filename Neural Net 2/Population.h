@@ -11,6 +11,7 @@ class Population
 public:
 	int population_size;
 	Red* individus;
+	double* av_error;
 
 	Population(int* structure, int size);
 	void inputs (double *in);

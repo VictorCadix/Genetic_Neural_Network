@@ -7,6 +7,7 @@ Population::Population(int *structure, int size)
 	this->population_size = size;
 	this->individus = new Red[size];
 	this->mutation_rate = 1;
+	this->av_error = new double[size];
 
 	for (int i = 0; i < this->population_size; i++)
 	{
@@ -40,4 +41,13 @@ void Population::evaluate(int nSamples,double** in, double** expected_result) {
 #endif
 		}
 	}
+
+	//Average error
+	for (int indiv = 0; indiv < population_size; indiv++) {
+		av_error[indiv] = individus[indiv].getAverage_error();
+#ifdef PRINTDEBUG 
+		cout << "average error " << av_error[indiv] << endl;
+#endif
+	}
+
 }
