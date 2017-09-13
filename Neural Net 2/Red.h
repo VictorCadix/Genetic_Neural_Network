@@ -29,5 +29,6 @@ public:
 	void genes2weights();
 	void forwardProp();
 	double getResult();
+	double getAverage_error();
 };
 #endif
