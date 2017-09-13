@@ -24,7 +24,7 @@ void Population::inputs(double *in) {
 void Population::solve(double *expected_result) {
 	for (int i = 0; i < population_size; i++) {
 		this->individus[i].geneForwardProp();
-		individus[i].error.push_back(individus[i].getResult() - *expected_result);
+		individus[i].error.push_back(abs(individus[i].getResult() - *expected_result));
 #ifdef PRINTDEBUG 
 		cout << "error = " << individus[i].error.back() << endl;
 #endif
