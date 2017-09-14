@@ -512,3 +512,12 @@ TEST_CASE("Population evaluate donne des resultats plausibles")
 		CHECK(maPop.individus[i].getResult() >= 0);
 	}
 }
+
+TEST_CASE("fonction getAverage_error") {
+	int structure[] = { 4,3,5,4,1 };
+	Red red(structure);
+	red.error.push_back(0.6);
+	red.error.push_back(0.6);
+	red.error.push_back(0.9);
+	CHECK(red.getAverage_error() == 0.7);
+}
