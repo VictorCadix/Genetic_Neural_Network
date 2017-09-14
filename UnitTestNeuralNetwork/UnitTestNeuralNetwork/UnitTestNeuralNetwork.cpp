@@ -519,6 +519,5 @@ TEST_CASE("fonction getAverage_error") {
 	red.error.push_back(0.6);
 	red.error.push_back(0.9);
 	double av_error = red.getAverage_error();
-	CHECK(av_error < 0.71);
-	CHECK(av_error > 0.69);
+	CHECK(av_error == Approx(0.7));
 }
