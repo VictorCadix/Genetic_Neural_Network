@@ -479,15 +479,32 @@ TEST_CASE("Reglage des inputs de la population")
 	}
 }
 
-/*
+
 TEST_CASE("Population evaluate donne des resultats plausibles")
 {
 	int structure[] = { 3,2,3,1 };
 	Population maPop = Population(structure, 10);
-	double inputs[] = { 2,3 };
-	double expected_result[] = { 2 };
-	maPop.inputs(inputs);
-	maPop.evaluate(expected_result);
+
+	//Inputs
+	double** input;
+	input = new double *[1];
+	for (int i = 0; i < 1; i++) {
+		input[i] = new double[2];
+	}
+	input[0][0] = 0.2;
+	input[0][1] = 0.3;
+
+	//Result
+	double** expected_result;
+
+	expected_result = new double*[1];
+	for (int i = 0; i < 1; i++) {
+		expected_result[i] = new double[1];
+	}
+	expected_result[0][0] = 0.2;
+
+	//Evaluate
+	maPop.evaluate(1,input,expected_result);
 
 	for (int i = 0; i < maPop.population_size; i++)
 	{
@@ -495,4 +512,3 @@ TEST_CASE("Population evaluate donne des resultats plausibles")
 		CHECK(maPop.individus[i].getResult() >= 0);
 	}
 }
-*/
