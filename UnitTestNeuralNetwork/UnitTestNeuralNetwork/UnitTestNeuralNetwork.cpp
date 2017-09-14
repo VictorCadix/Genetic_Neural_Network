@@ -479,7 +479,6 @@ TEST_CASE("Reglage des inputs de la population")
 	}
 }
 
-
 TEST_CASE("Population evaluate donne des resultats plausibles")
 {
 	int structure[] = { 3,2,3,1 };
@@ -519,5 +518,7 @@ TEST_CASE("fonction getAverage_error") {
 	red.error.push_back(0.6);
 	red.error.push_back(0.6);
 	red.error.push_back(0.9);
-	CHECK(red.getAverage_error() == 0.7);
+	double av_error = red.getAverage_error();
+	CHECK(av_error < 0.71);
+	CHECK(av_error > 0.69);
 }
