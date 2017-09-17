@@ -204,10 +204,16 @@ void Red::genes2weights() {
 }
 
 double Red::getAverage_error() {
-	double tot = 0;
-	for (int i = 0; i < error.size(); i++) {
-		tot += error[i];
+	if (this->avgError == 9999)
+	{
+		double tot = 0;
+		for (int i = 0; i < error.size(); i++) {
+			tot += error[i];
+		}
+		tot = tot / error.size();
+		this->avgError = tot;
+		return (tot);
 	}
-	tot = tot / error.size();
-	return (tot);
+	
+	return this->avgError;
 }
