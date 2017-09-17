@@ -7,7 +7,7 @@ Population::Population(int *structure, int size)
 	this->population_size = size;
 	this->individus = new Red[size];
 	this->mutation_rate = 1;
-	this->av_error = new double[size];
+	this->networkErrors = new double[size];
 
 	for (int i = 0; i < this->population_size; i++)
 	{
