@@ -10,11 +10,13 @@ Red::Red()
 	this->nNeuronas = 0;
 	this->structure = NULL;
 	this->genes = NULL;
+	this->avgError = 9999;
 }
 
 Red::Red(int *structure_in) {
 	this->structure = structure_in;
 	this->nLayers = structure[0];
+	this->avgError = 9999;
 
 #ifdef PRINTDEBUG 
 	cout << "Net with " << this->nLayers << " layers" << endl;

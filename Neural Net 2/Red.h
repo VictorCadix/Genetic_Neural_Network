@@ -14,6 +14,7 @@ public:
 	int nNeuronas;
 	int *structure;
 	double ***genes;
+	double avgError;
 	vector <double> error;
 	
 	vector <Layer> layers;
