@@ -24,31 +24,24 @@ void Population::inputs(double *in) {
 
 void Population::evaluate(int nSamples,double** in, double** expected_result) {
 
-	//For each sample data test
-	for (int sample = 0; sample < nSamples; sample++) {
-
-		#ifdef PRINTDEBUG 
-			cout <<endl<< "   Sample " << sample << endl;
-		#endif
-
-		//setting the inputs, propagate and calculate errors
-		for (int i = 0; i < population_size; i++) {
-			this->individus[i].inputs(in[sample]);
+	//For each individual
+	for (int i = 0; i < this->population_size; i++)
+	{
+		double errorSum = 0;
+		
+		//For each sample
+		for (int s = 0; s < nSamples; s++)
+		{
+			this->individus[i].inputs(in[s]);
 			this->individus[i].geneForwardProp();
-			individus[i].error.push_back(abs(individus[i].getResult() - *expected_result[sample]));
 
-			#ifdef PRINTDEBUG 
-					cout << "error indiv "<< i << " = " << individus[i].error.back() << endl;
-			#endif
+			this->individus[i].error.push_back(abs(individus[i].getResult() - *expected_result[s]));
+			errorSum += abs(individus[i].getResult() - *expected_result[s]);
 		}
-	}
 
-	//Average error
-	for (int indiv = 0; indiv < population_size; indiv++) {
-		av_error[indiv] = individus[indiv].getAverage_error();
 		#ifdef PRINTDEBUG 
-			cout << "average error " << av_error[indiv] << endl;
+				cout << "average error " << errorSum/nSamples << endl;
 		#endif
-	}
 
+	}
 }
