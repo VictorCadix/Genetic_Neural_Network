@@ -39,8 +39,10 @@ void Population::evaluate(int nSamples,double** in, double** expected_result) {
 			errorSum += abs(individus[i].getResult() - *expected_result[s]);
 		}
 
+		individus[i].avgError = errorSum / nSamples;
+
 		#ifdef PRINTDEBUG 
-				cout << "average error " << errorSum/nSamples << endl;
+				cout << "average error " << individus[i].avgError << endl;
 		#endif
 
 	}
