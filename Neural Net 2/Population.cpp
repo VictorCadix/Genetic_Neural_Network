@@ -27,7 +27,6 @@ void Population::evaluate(int nSamples,double** in, double** expected_result) {
 	//For each individual
 	for (int i = 0; i < this->population_size; i++)
 	{
-		double errorSum = 0;
 		
 		//For each sample
 		for (int s = 0; s < nSamples; s++)
@@ -36,13 +35,12 @@ void Population::evaluate(int nSamples,double** in, double** expected_result) {
 			this->individus[i].geneForwardProp();
 
 			this->individus[i].error.push_back(abs(individus[i].getResult() - *expected_result[s]));
-			errorSum += abs(individus[i].getResult() - *expected_result[s]);
 		}
 
-		individus[i].avgError = errorSum / nSamples;
+		networkErrors[i] = individus[i].getAverage_error();
 
 		#ifdef PRINTDEBUG 
-				cout << "average error " << individus[i].avgError << endl;
+				cout << "average error " << networkErrors[i] << endl;
 		#endif
 
 	}
