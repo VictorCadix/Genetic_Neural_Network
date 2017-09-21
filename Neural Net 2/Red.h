@@ -15,6 +15,7 @@ public:
 	int *structure;
 	double ***genes;
 	double avgError;
+	double *result;
 	vector <double> error;
 	
 	vector <Layer> layers;

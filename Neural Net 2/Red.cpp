@@ -11,12 +11,14 @@ Red::Red()
 	this->structure = NULL;
 	this->genes = NULL;
 	this->avgError = 9999;
+	this->result = NULL;
 }
 
 Red::Red(int *structure_in) {
 	this->structure = structure_in;
 	this->nLayers = structure[0];
 	this->avgError = 9999;
+	this->result = new double[structure[nLayers]];
 
 #ifdef PRINTDEBUG 
 	cout << "Net with " << this->nLayers << " layers" << endl;
