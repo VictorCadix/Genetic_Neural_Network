@@ -34,7 +34,7 @@ void Population::evaluate(int nSamples,double** in, double** expected_result) {
 			this->individus[i].inputs(in[s]);
 			this->individus[i].geneForwardProp();
 
-			this->individus[i].error.push_back(abs(individus[i].getResult() - *expected_result[s]));
+			this->individus[i].calculate_error(expected_result[s]);
 		}
 
 		networkErrors[i] = individus[i].getAverage_error();

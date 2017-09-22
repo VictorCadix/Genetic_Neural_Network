@@ -117,7 +117,10 @@ void Red::geneForwardProp() {
 }
 
 double Red::getResult() {
-	return (layers[nLayers-1][0].getValor()); // Only works for 1 output
+	for (int i = 0; i < structure[nLayers]; i++) {
+		result[i] = layers[nLayers - 1][0].getValor();
+	}
+	return (layers[nLayers-1][0].getValor()); // Only returns the first output
 }
 
 double *** Red::getGenes() {
@@ -203,6 +206,18 @@ void Red::genes2weights() {
 			}
 		}
 	}
+}
+
+void Red::calculate_error(double* exp_result) {
+
+	//calculates the total error from outputs
+	getResult(); //It updates *result. 
+
+	double err = 0;
+	for (int out = 0; out < structure[nLayers]; out++) {
+		err += abs(result[out] - exp_result[out]);
+	}
+	error.push_back(err);
 }
 
 double Red::getAverage_error() {
