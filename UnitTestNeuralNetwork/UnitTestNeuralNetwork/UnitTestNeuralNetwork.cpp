@@ -521,3 +521,30 @@ TEST_CASE("fonction getAverage_error") {
 	double av_error = red.getAverage_error();
 	CHECK(av_error == Approx(0.7));
 }
+
+TEST_CASE("multiple outputs") {
+	int structure[] = { 3,2,4,2 };
+
+	Red red(structure);
+
+	//Simulating 2 samples
+	//Sample 1
+	red.layers[2][0].setValor(0.5);
+	red.layers[2][1].setValor(0.6);
+
+	double expect_result[] = { 0.7,0.3 };
+	red.calculate_error(expect_result);
+
+	//Sample 2
+	red.layers[2][0].setValor(0.1);
+	red.layers[2][1].setValor(0.9);
+
+	double expect_result[] = { 0.15,0.81 };
+	red.calculate_error(expect_result);
+
+	CHECK(red.error[0] == 0.7 - 0.5 + 0.6 - 0.3);
+	CHECK(red.error[1] == 0.15 - 0.1 + 0.9 - 0.81);
+
+	double av_error = red.getAverage_error();
+	CHECK(av_error == 0.14);
+}
