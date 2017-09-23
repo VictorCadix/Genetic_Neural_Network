@@ -546,5 +546,5 @@ TEST_CASE("multiple outputs") {
 	CHECK(red.error[1] == 0.15 - 0.1 + 0.9 - 0.81);
 
 	double av_error = red.getAverage_error();
-	CHECK(av_error == 0.14);
+	CHECK(av_error == 0.32);
 }
