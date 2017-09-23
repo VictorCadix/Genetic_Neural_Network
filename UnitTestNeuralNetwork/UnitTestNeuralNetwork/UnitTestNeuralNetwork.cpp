@@ -532,15 +532,15 @@ TEST_CASE("multiple outputs") {
 	red.layers[2][0].setValor(0.5);
 	red.layers[2][1].setValor(0.6);
 
-	double expect_result[] = { 0.7,0.3 };
-	red.calculate_error(expect_result);
+	double expect_result1[] = { 0.7,0.3 };
+	red.calculate_error(expect_result1);
 
 	//Sample 2
 	red.layers[2][0].setValor(0.1);
 	red.layers[2][1].setValor(0.9);
 
-	double expect_result[] = { 0.15,0.81 };
-	red.calculate_error(expect_result);
+	double expect_result2[] = { 0.15,0.81 };
+	red.calculate_error(expect_result2);
 
 	CHECK(red.error[0] == 0.7 - 0.5 + 0.6 - 0.3);
 	CHECK(red.error[1] == 0.15 - 0.1 + 0.9 - 0.81);
