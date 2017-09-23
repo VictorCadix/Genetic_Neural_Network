@@ -118,7 +118,7 @@ void Red::geneForwardProp() {
 
 double Red::getResult() {
 	for (int i = 0; i < structure[nLayers]; i++) {
-		result[i] = layers[nLayers - 1][0].getValor();
+		result[i] = layers[nLayers - 1][i].getValor();
 	}
 	return (layers[nLayers-1][0].getValor()); // Only returns the first output
 }
