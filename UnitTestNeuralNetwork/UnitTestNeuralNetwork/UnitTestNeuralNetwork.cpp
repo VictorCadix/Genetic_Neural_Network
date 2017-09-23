@@ -542,9 +542,9 @@ TEST_CASE("multiple outputs") {
 	double expect_result2[] = { 0.15,0.81 };
 	red.calculate_error(expect_result2);
 
-	CHECK(red.error[0] == 0.7 - 0.5 + 0.6 - 0.3);
-	CHECK(red.error[1] == 0.15 - 0.1 + 0.9 - 0.81);
+	CHECK(red.error[0] == Approx(0.7 - 0.5 + 0.6 - 0.3));
+	CHECK(red.error[1] == Approx(0.15 - 0.1 + 0.9 - 0.81));
 
 	double av_error = red.getAverage_error();
-	CHECK(av_error == 0.32);
+	CHECK(av_error == Approx(0.32));
 }
