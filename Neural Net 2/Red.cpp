@@ -10,11 +10,15 @@ Red::Red()
 	this->nNeuronas = 0;
 	this->structure = NULL;
 	this->genes = NULL;
+	this->avgError = 9999;
+	this->result = NULL;
 }
 
 Red::Red(int *structure_in) {
 	this->structure = structure_in;
 	this->nLayers = structure[0];
+	this->avgError = 9999;
+	this->result = new double[structure[nLayers]];
 
 #ifdef PRINTDEBUG 
 	cout << "Net with " << this->nLayers << " layers" << endl;
@@ -113,7 +117,10 @@ void Red::geneForwardProp() {
 }
 
 double Red::getResult() {
-	return (layers[nLayers-1][0].getValor()); // Only works for 1 output
+	for (int i = 0; i < structure[nLayers]; i++) {
+		result[i] = layers[nLayers - 1][i].getValor();
+	}
+	return (layers[nLayers-1][0].getValor()); // Only returns the first output
 }
 
 double *** Red::getGenes() {
@@ -199,4 +206,31 @@ void Red::genes2weights() {
 			}
 		}
 	}
+}
+
+void Red::calculate_error(double* exp_result) {
+
+	//calculates the total error from outputs
+	getResult(); //It updates *result. 
+
+	double err = 0;
+	for (int out = 0; out < structure[nLayers]; out++) {
+		err += abs(result[out] - exp_result[out]);
+	}
+	error.push_back(err);
+}
+
+double Red::getAverage_error() {
+	if (this->avgError == 9999)
+	{
+		double tot = 0;
+		for (int i = 0; i < error.size(); i++) {
+			tot += error[i];
+		}
+		tot = tot / error.size();
+		this->avgError = tot;
+		return (tot);
+	}
+	
+	return this->avgError;
 }

@@ -11,9 +11,10 @@ class Population
 public:
 	int population_size;
 	Red* individus;
+	double* networkErrors;
 
 	Population(int* structure, int size);
 	void inputs (double *in);
-	void solve();
+	void evaluate(int nSamples, double** in, double** expected_result);
 };
 #endif

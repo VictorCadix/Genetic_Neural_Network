@@ -479,17 +479,72 @@ TEST_CASE("Reglage des inputs de la population")
 	}
 }
 
-TEST_CASE("Population solve donne des resultats plausibles")
+TEST_CASE("Population evaluate donne des resultats plausibles")
 {
 	int structure[] = { 3,2,3,1 };
 	Population maPop = Population(structure, 10);
-	double inputs[] = { 2,3 };
-	maPop.inputs(inputs);
-	maPop.solve();
+
+	//Inputs
+	double** input;
+	input = new double *[1];
+	for (int i = 0; i < 1; i++) {
+		input[i] = new double[2];
+	}
+	input[0][0] = 0.2;
+	input[0][1] = 0.3;
+
+	//Result
+	double** expected_result;
+
+	expected_result = new double*[1];
+	for (int i = 0; i < 1; i++) {
+		expected_result[i] = new double[1];
+	}
+	expected_result[0][0] = 0.2;
+
+	//Evaluate
+	maPop.evaluate(1,input,expected_result);
 
 	for (int i = 0; i < maPop.population_size; i++)
 	{
 		CHECK(maPop.individus[i].getResult() <= 1);
 		CHECK(maPop.individus[i].getResult() >= 0);
 	}
+}
+
+TEST_CASE("fonction getAverage_error") {
+	int structure[] = { 4,3,5,4,1 };
+	Red red(structure);
+	red.error.push_back(0.6);
+	red.error.push_back(0.6);
+	red.error.push_back(0.9);
+	double av_error = red.getAverage_error();
+	CHECK(av_error == Approx(0.7));
+}
+
+TEST_CASE("multiple outputs") {
+	int structure[] = { 3,2,4,2 };
+
+	Red red(structure);
+
+	//Simulating 2 samples
+	//Sample 1
+	red.layers[2][0].setValor(0.5);
+	red.layers[2][1].setValor(0.6);
+
+	double expect_result1[] = { 0.7,0.3 };
+	red.calculate_error(expect_result1);
+
+	//Sample 2
+	red.layers[2][0].setValor(0.1);
+	red.layers[2][1].setValor(0.9);
+
+	double expect_result2[] = { 0.15,0.81 };
+	red.calculate_error(expect_result2);
+
+	CHECK(red.error[0] == Approx(0.7 - 0.5 + 0.6 - 0.3));
+	CHECK(red.error[1] == Approx(0.15 - 0.1 + 0.9 - 0.81));
+
+	double av_error = red.getAverage_error();
+	CHECK(av_error == Approx(0.32));
 }

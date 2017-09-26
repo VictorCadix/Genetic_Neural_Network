@@ -14,6 +14,9 @@ public:
 	int nNeuronas;
 	int *structure;
 	double ***genes;
+	double avgError;
+	double *result;
+	vector <double> error;
 	
 	vector <Layer> layers;
 
@@ -28,5 +31,7 @@ public:
 	void genes2weights();
 	void forwardProp();
 	double getResult();
+	void calculate_error(double* exp_result);
+	double getAverage_error();
 };
 #endif
