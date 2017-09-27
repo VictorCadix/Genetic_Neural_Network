@@ -19,5 +19,7 @@ public:
 	void inputs (double *in);
 	void evaluate(int nSamples, double** in, double** expected_result);
 	void print_results();
+private:
+	void calculate_probability();
 };
 #endif
