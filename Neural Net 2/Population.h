@@ -12,6 +12,7 @@ public:
 	int population_size;
 	Red* individus;
 	double* networkErrors;
+	double* fitness;
 
 	Population(int* structure, int size);
 	void inputs (double *in);

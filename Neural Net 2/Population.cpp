@@ -8,6 +8,7 @@ Population::Population(int *structure, int size)
 	this->individus = new Red[size];
 	this->mutation_rate = 1;
 	this->networkErrors = new double[size];
+	this->fitness = new double[size];
 
 	for (int i = 0; i < this->population_size; i++)
 	{
@@ -38,6 +39,7 @@ void Population::evaluate(int nSamples,double** in, double** expected_result) {
 		}
 
 		networkErrors[i] = individus[i].getAverage_error();
+		fitness[i] = (1 - networkErrors[i])*(1 - networkErrors[i])*(1 - networkErrors[i]);
 
 		#ifdef PRINTDEBUG 
 				cout << "average error " << networkErrors[i] << endl;
