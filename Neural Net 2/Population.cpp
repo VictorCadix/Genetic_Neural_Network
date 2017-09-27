@@ -47,3 +47,14 @@ void Population::evaluate(int nSamples,double** in, double** expected_result) {
 
 	}
 }
+
+void Population::print_results() {
+	cout << endl << " - Errors - " << endl << endl;
+	for (int i = 0; i < population_size; i++) {
+		cout << "Pop[" << i << "] = " << networkErrors[i] << endl;
+	}
+	cout << endl << " - Fitness - " << endl << endl;
+	for (int i = 0; i < population_size; i++) {
+		cout << "Pop[" << i << "] = " << fitness[i] << endl;
+	}
+}
