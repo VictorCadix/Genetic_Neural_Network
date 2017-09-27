@@ -41,6 +41,7 @@ void Population::evaluate(int nSamples,double** in, double** expected_result) {
 
 		networkErrors[i] = individus[i].getAverage_error();
 		fitness[i] = (1 - networkErrors[i])*(1 - networkErrors[i])*(1 - networkErrors[i]);
+		calculate_probability();
 
 		#ifdef PRINTDEBUG 
 				cout << "average error " << networkErrors[i] << endl;
