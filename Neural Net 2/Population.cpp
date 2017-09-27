@@ -9,6 +9,7 @@ Population::Population(int *structure, int size)
 	this->mutation_rate = 1;
 	this->networkErrors = new double[size];
 	this->fitness = new double[size];
+	this->probability = new double[size];
 
 	for (int i = 0; i < this->population_size; i++)
 	{
