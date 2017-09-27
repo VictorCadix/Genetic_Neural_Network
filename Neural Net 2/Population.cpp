@@ -59,6 +59,10 @@ void Population::print_results() {
 	for (int i = 0; i < population_size; i++) {
 		cout << "Pop[" << i << "] = " << fitness[i] << endl;
 	}
+	cout << endl << " - Probability - " << endl << endl;
+	for (int i = 0; i < population_size; i++) {
+		cout << "Pop[" << i << "] = " << probability[i] << endl;
+	}
 }
 
 void Population::calculate_probability() {
