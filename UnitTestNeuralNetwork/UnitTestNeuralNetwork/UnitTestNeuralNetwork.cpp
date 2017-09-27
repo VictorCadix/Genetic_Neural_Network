@@ -560,7 +560,7 @@ TEST_CASE("fitness") {
 	for (int i = 0; i < 3; i++) {
 		pop.fitness[i] = (1 - pop.networkErrors[i])*(1 - pop.networkErrors[i])*(1 - pop.networkErrors[i]);
 	}
-	CHECK(pop.fitness[0] == (0.551368));
-	CHECK(pop.fitness[1] == (0.039304));
-	CHECK(pop.fitness[2] == (0.287496));
+	CHECK(pop.fitness[0] == Approx(0.551368));
+	CHECK(pop.fitness[1] == Approx(0.039304));
+	CHECK(pop.fitness[2] == Approx(0.287496));
 }
