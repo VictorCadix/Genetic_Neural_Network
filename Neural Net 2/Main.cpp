@@ -38,6 +38,7 @@ void main(int argc, char* argv[]) {
 	Population population(structure, 10);
 
 	population.evaluate(2, input, expected_result);
+	population.print_results();
 
 
 	if (argv[1] == NULL)
