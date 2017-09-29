@@ -564,3 +564,35 @@ TEST_CASE("fitness") {
 	CHECK(pop.fitness[1] == Approx(0.039304));
 	CHECK(pop.fitness[2] == Approx(0.287496));
 }
+
+TEST_CASE("probability") {
+
+	int structure[] = { 3,2,3,1 };
+	Population maPop(structure, 50);
+
+	//Inputs
+	double** input;
+	input = new double *[1];
+	for (int i = 0; i < 1; i++) {
+		input[i] = new double[2];
+	}
+	input[0][0] = 0.2;
+	input[0][1] = 0.6;
+
+	//Result
+	double** expected_result;
+
+	expected_result = new double*[1];
+	for (int i = 0; i < 1; i++) {
+		expected_result[i] = new double[1];
+	}
+	expected_result[0][0] = 0.2;
+
+	//Evaluate
+	maPop.evaluate(1, input, expected_result);
+	double total_probability = 0;
+	for (int i = 0; i < maPop.population_size; i++) {
+		total_probability += maPop.probability[i];
+	}
+	CHECK(total_probability == Approx(100));
+}
