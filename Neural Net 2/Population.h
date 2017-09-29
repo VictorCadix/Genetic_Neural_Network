@@ -22,5 +22,6 @@ public:
 
 private:
 	void calculate_probability();
+	int get_parent();
 };
 #endif

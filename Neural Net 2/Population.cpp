@@ -75,3 +75,15 @@ void Population::calculate_probability() {
 		probability[i] = fitness[i] / sum * 100;
 	}
 }
+
+int Population::get_parent() {
+	double target = (double)(rand() % 10000);
+	target = target/100;
+	double accum_prob = 0;
+	for (int i = 0; i < population_size; i++) {
+		accum_prob += probability[i];
+		if (accum_prob > target) {
+			return i;
+		}
+	}
+}
