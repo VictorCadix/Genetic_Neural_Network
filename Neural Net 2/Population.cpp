@@ -82,7 +82,7 @@ int Population::get_parent() {
 	double accum_prob = 0;
 	for (int i = 0; i < population_size; i++) {
 		accum_prob += probability[i];
-		if (accum_prob > target) {
+		if (accum_prob >= target) {
 			return i;
 		}
 	}
