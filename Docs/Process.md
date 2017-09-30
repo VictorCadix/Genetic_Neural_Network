@@ -3,7 +3,7 @@
 ## What we want
 
 The program will be used through a `Population` object, which contains a collection of neural networks with various weights.
-The better neural network (_ie with the best results_) will be found thanks to a Darwinian algorithm.
+The best neural network (_ie with the best results_) will be found thanks to a Darwinian algorithm.
 
 ## How it works
 
