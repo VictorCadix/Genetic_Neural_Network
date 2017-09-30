@@ -13,10 +13,15 @@ public:
 	Red* individus;
 	double* networkErrors;
 	double* fitness;
+	double* probability;
 
 	Population(int* structure, int size);
 	void inputs (double *in);
 	void evaluate(int nSamples, double** in, double** expected_result);
 	void print_results();
+
+private:
+	void calculate_probability();
+	int get_parent();
 };
 #endif

@@ -9,11 +9,13 @@ Population::Population(int *structure, int size)
 	this->mutation_rate = 1;
 	this->networkErrors = new double[size];
 	this->fitness = new double[size];
+	this->probability = new double[size];
 
 	for (int i = 0; i < this->population_size; i++)
 	{
 		this->individus[i] = Red(structure);
 		this->individus[i].setRandomGenes();
+		this->individus[i].genes2weights();
 	}
 }
 
@@ -40,6 +42,7 @@ void Population::evaluate(int nSamples,double** in, double** expected_result) {
 
 		networkErrors[i] = individus[i].getAverage_error();
 		fitness[i] = (1 - networkErrors[i])*(1 - networkErrors[i])*(1 - networkErrors[i]);
+		calculate_probability();
 
 		#ifdef PRINTDEBUG 
 				cout << "average error " << networkErrors[i] << endl;
@@ -56,5 +59,31 @@ void Population::print_results() {
 	cout << endl << " - Fitness - " << endl << endl;
 	for (int i = 0; i < population_size; i++) {
 		cout << "Pop[" << i << "] = " << fitness[i] << endl;
+	}
+	cout << endl << " - Probability - " << endl << endl;
+	for (int i = 0; i < population_size; i++) {
+		cout << "Pop[" << i << "] = " << probability[i] << endl;
+	}
+}
+
+void Population::calculate_probability() {
+	double sum = 0;
+	for (int i = 0; i < this->population_size; i++) {
+		sum += fitness[i];
+	}
+	for (int i = 0; i < this->population_size; i++) {
+		probability[i] = fitness[i] / sum * 100;
+	}
+}
+
+int Population::get_parent() {
+	double target = (double)(rand() % 10000);
+	target = target/100;
+	double accum_prob = 0;
+	for (int i = 0; i < population_size; i++) {
+		accum_prob += probability[i];
+		if (accum_prob >= target) {
+			return i;
+		}
 	}
 }
