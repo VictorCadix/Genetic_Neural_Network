@@ -87,3 +87,22 @@ int Population::get_parent() {
 		}
 	}
 }
+
+void Population::new_generation() {
+	for (int i = 0; i < 100; i++) {
+
+		int parent1 = get_parent();
+		int parent2 = get_parent();
+		do {
+			parent1 = get_parent();
+			parent2 = get_parent();
+		} while (parent1 == parent2);
+
+		reproduce(parent1, parent2);
+		//Completer
+	}
+}
+
+void Population::reproduce(int parent1, int parent2) {
+	//Completer
+}

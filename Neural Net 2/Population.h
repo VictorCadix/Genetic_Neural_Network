@@ -19,9 +19,11 @@ public:
 	void inputs (double *in);
 	void evaluate(int nSamples, double** in, double** expected_result);
 	void print_results();
+	void new_generation();
 
 private:
 	void calculate_probability();
 	int get_parent();
+	void reproduce(int parent1, int parent2);
 };
 #endif
