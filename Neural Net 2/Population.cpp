@@ -10,6 +10,7 @@ Population::Population(int *structure, int size)
 	this->networkErrors = new double[size];
 	this->fitness = new double[size];
 	this->probability = new double[size];
+	this->child = new Red[population_size];
 
 	for (int i = 0; i < this->population_size; i++)
 	{
@@ -89,6 +90,7 @@ int Population::get_parent() {
 }
 
 void Population::new_generation() {
+
 	for (int i = 0; i < 100; i++) {
 
 		int parent1 = get_parent();
@@ -98,11 +100,14 @@ void Population::new_generation() {
 			parent2 = get_parent();
 		} while (parent1 == parent2);
 
-		reproduce(parent1, parent2);
+		child[i] = reproduce(parent1, parent2);
 		//Completer
 	}
 }
 
-void Population::reproduce(int parent1, int parent2) {
-	//Completer
+Red Population::reproduce(int parent1, int parent2) {
+	
+	Red child(individus[parent1].structure);
+
+	return child;
 }

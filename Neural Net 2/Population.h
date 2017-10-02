@@ -8,6 +8,7 @@ using namespace std;
 class Population
 {
 	int mutation_rate; //in %
+	Red *child; 
 public:
 	int population_size;
 	Red* individus;
@@ -24,6 +25,6 @@ public:
 private:
 	void calculate_probability();
 	int get_parent();
-	void reproduce(int parent1, int parent2);
+	Red reproduce(int parent1, int parent2);
 };
 #endif
