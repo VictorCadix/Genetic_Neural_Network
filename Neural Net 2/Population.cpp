@@ -17,6 +17,8 @@ Population::Population(int *structure, int size)
 		this->individus[i] = Red(structure);
 		this->individus[i].setRandomGenes();
 		this->individus[i].genes2weights();
+
+		this->child[i] = Red(structure);
 	}
 }
 
@@ -91,7 +93,7 @@ int Population::get_parent() {
 
 void Population::new_generation() {
 
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < population_size; i++) {
 
 		int parent1 = get_parent();
 		int parent2 = get_parent();
@@ -101,7 +103,9 @@ void Population::new_generation() {
 		} while (parent1 == parent2);
 
 		child[i] = reproduce(parent1, parent2);
-		//Completer
+	}
+	for (int i = 0; i < population_size; i++) {
+		individus[i].setGenes(child[i].getGenes());
 	}
 }
 
@@ -109,5 +113,18 @@ Red Population::reproduce(int parent1, int parent2) {
 	
 	Red child(individus[parent1].structure);
 
+	int nLayers = individus[parent1].structure[0];
+
+	for (int i = 0; i < nLayers - 1; i++) {
+		for (int j = 0; j < individus[parent1].structure[i + 1] + 1; j++) {
+			for (int k = 0; k < individus[parent1].structure[i + 2]; k++) {
+				if ((i + j + k) % 2 == 0) {
+					child.genes[i][j][k] = individus[parent1].genes[i][j][k];
+				}
+				else
+					child.genes[i][j][k] = individus[parent2].genes[i][j][k];
+			}
+		}
+	}
 	return child;
 }
