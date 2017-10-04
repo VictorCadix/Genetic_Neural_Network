@@ -21,6 +21,7 @@ public:
 	void evaluate(int nSamples, double** in, double** expected_result);
 	void print_results();
 	void new_generation();
+	double average_error();
 
 private:
 	void calculate_probability();

@@ -128,3 +128,12 @@ Red Population::reproduce(int parent1, int parent2) {
 	}
 	return child;
 }
+
+double Population::average_error() {
+	double sum = 0;
+	for (int i = 0; i < population_size; i++) {
+		sum += networkErrors[i];
+	}
+	sum = sum / population_size;
+	return sum;
+}
