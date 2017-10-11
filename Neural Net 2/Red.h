@@ -23,7 +23,7 @@ public:
 	Red();
 	Red(int *structure_in);
 	void inputs(double *in);
-	void print();
+	void print(int mode = 0);
 	void geneForwardProp();
 	double *** getGenes();
 	void setGenes(double***genes);

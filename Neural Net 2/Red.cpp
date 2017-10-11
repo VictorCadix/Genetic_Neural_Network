@@ -75,25 +75,29 @@ void Red::inputs(double *in){
 	#endif
 }
 
-void Red::print(){
-	for (int c=0; c<this->nLayers; c++){
-		for (int n=0; n<this->structure[c+1]+1; n++){
-			if (c == nLayers - 1 && n == structure[c + 1])
-				break;
-			this->layers[c][n].print();
-			//cout<<"Neurona en : capa "<<Capas[c][n].posCapa<<", pos "<<Capas[c][n].posNeurona<<endl;
+void Red::print(int mode) {
+	if (mode == 0 || mode == 1) {
+		for (int c = 0; c < this->nLayers; c++) {
+			for (int n = 0; n < this->structure[c + 1] + 1; n++) {
+				if (c == nLayers - 1 && n == structure[c + 1])
+					break;
+				this->layers[c][n].print();
+				//cout<<"Neurona en : capa "<<Capas[c][n].posCapa<<", pos "<<Capas[c][n].posNeurona<<endl;
+			}
 		}
 	}
 	//Weights print
-	cout << endl << " Weights tensor" << endl;
-	for (int i = 0; i < this->nLayers-1; i++) {
-		cout <<endl<< "Weight matrix " << i + 1 << endl;
-		for (int j = 0; j < this->structure[i+1]+1; j++) { //[]+1 for bias
-			for (int k = 0; k < this->structure[i+2]; k++) {
-				cout << this->genes[i][j][k] << '\t';
+	if (mode == 0 || mode == 2) {
+		cout << endl << " Weights tensor" << endl;
+		for (int i = 0; i < this->nLayers - 1; i++) {
+			cout << endl << "Weight matrix " << i + 1 << endl;
+			for (int j = 0; j < this->structure[i + 1] + 1; j++) { //[]+1 for bias
+				for (int k = 0; k < this->structure[i + 2]; k++) {
+					cout << this->genes[i][j][k] << '\t';
+				}
+				cout << endl;
 			}
-			cout << endl;
-		}		
+		}
 	}
 
 	//Result print
