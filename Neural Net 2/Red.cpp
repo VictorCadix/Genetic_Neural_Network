@@ -225,16 +225,12 @@ void Red::calculate_error(double* exp_result) {
 }
 
 double Red::getAverage_error() {
-	if (this->avgError == 9999)
-	{
-		double tot = 0;
-		for (int i = 0; i < error.size(); i++) {
-			tot += error[i];
-		}
-		tot = tot / error.size();
-		this->avgError = tot;
-		return (tot);
+
+	double tot = 0;
+	for (int i = 0; i < error.size(); i++) {
+		tot += error[i];
 	}
-	
-	return this->avgError;
+	tot = tot / error.size();
+	this->avgError = tot;
+	return (tot);
 }
