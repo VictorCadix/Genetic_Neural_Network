@@ -37,8 +37,11 @@ void main(int argc, char* argv[]) {
 
 	Population population(structure, 10);
 
-	population.evaluate(2, input, expected_result);
-	population.print_results();
+	for (int i = 0; i < 100; i++) {
+		population.evaluate(2, input, expected_result);
+		cout << population.average_error() << endl;
+		population.new_generation();
+	}
 
 
 	if (argv[1] == NULL)
