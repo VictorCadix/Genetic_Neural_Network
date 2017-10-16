@@ -118,7 +118,11 @@ Red Population::reproduce(int parent1, int parent2) {
 	for (int i = 0; i < nLayers - 1; i++) {
 		for (int j = 0; j < individus[parent1].structure[i + 1] + 1; j++) {
 			for (int k = 0; k < individus[parent1].structure[i + 2]; k++) {
-				if ((i + j + k) % 2 == 0) {
+				int random = rand() % 100;
+				if (mutation_rate > random) {
+					child.genes[i][j][k] = (double)(rand() % 200) / 100 - 1;
+				}
+				else if ((i + j + k) % 2 == 0) {
 					child.genes[i][j][k] = individus[parent1].genes[i][j][k];
 				}
 				else
