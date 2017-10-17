@@ -6,7 +6,7 @@ Population::Population(int *structure, int size)
 {
 	this->population_size = size;
 	this->individus = new Red[size];
-	this->mutation_rate = 1;
+	this->mutation_rate = 0.1; //(min 0.001)
 	this->networkErrors = new double[size];
 	this->fitness = new double[size];
 	this->probability = new double[size];
@@ -118,7 +118,8 @@ Red Population::reproduce(int parent1, int parent2) {
 	for (int i = 0; i < nLayers - 1; i++) {
 		for (int j = 0; j < individus[parent1].structure[i + 1] + 1; j++) {
 			for (int k = 0; k < individus[parent1].structure[i + 2]; k++) {
-				int random = rand() % 100;
+				float random = rand() % 100000;
+				random = random / 1000;
 				if (mutation_rate > random) {
 					child.genes[i][j][k] = (double)(rand() % 200) / 100 - 1;
 				}

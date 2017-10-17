@@ -7,7 +7,7 @@ using namespace std;
 
 class Population
 {
-	int mutation_rate; //in %
+	float mutation_rate; //in %
 	Red *child; 
 public:
 	int population_size;
