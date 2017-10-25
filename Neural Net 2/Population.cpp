@@ -93,7 +93,10 @@ int Population::get_parent() {
 
 void Population::new_generation() {
 
-	for (int i = 0; i < population_size; i++) {
+	int elite = getBestNetwork();
+	child[0].setGenes(individus[elite].getGenes());
+
+	for (int i = 1; i < population_size; i++) {
 
 		int parent1 = get_parent();
 		int parent2 = get_parent();
@@ -150,5 +153,5 @@ int Population::getBestNetwork() {
 		if (networkErrors[i] < networkErrors[bestNetwork])
 			bestNetwork = i;
 	}
-	return bestNetwork;
+ 	return bestNetwork;
 }
