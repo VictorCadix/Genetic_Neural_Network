@@ -142,3 +142,13 @@ double Population::average_error() {
 	sum = sum / population_size;
 	return sum;
 }
+
+int Population::getBestNetwork() {
+	int bestNetwork = 0;
+
+	for (int i = 0; i < population_size; i++) {
+		if (networkErrors[i] < networkErrors[bestNetwork])
+			bestNetwork = i;
+	}
+	return bestNetwork;
+}

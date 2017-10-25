@@ -22,6 +22,7 @@ public:
 	void print_results();
 	void new_generation();
 	double average_error();
+	int getBestNetwork();
 
 private:
 	void calculate_probability();
