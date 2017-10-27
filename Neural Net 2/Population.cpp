@@ -11,6 +11,7 @@ Population::Population(int *structure, int size)
 	this->fitness = new double[size];
 	this->probability = new double[size];
 	this->child = new Red[population_size];
+	this->mapedNetErrors = new double[size];
 
 	for (int i = 0; i < this->population_size; i++)
 	{
@@ -45,6 +46,8 @@ void Population::evaluate(int nSamples,double** in, double** expected_result) {
 
 		networkErrors[i] = individus[i].getAverage_error();
 		fitness[i] = (1 - networkErrors[i])*(1 - networkErrors[i])*(1 - networkErrors[i]);
+		//mapErrors();
+		//fitness[i] = (1 - mapedNetErrors[i])*(1 - mapedNetErrors[i]);
 		calculate_probability();
 
 		#ifdef PRINTDEBUG 
@@ -154,4 +157,23 @@ int Population::getBestNetwork() {
 			bestNetwork = i;
 	}
  	return bestNetwork;
+}
+
+void Population::mapErrors() {
+	int best = getBestNetwork();
+	double min = networkErrors[best];
+	for (int i = 0; i < population_size; i++) {
+		mapedNetErrors[i] = networkErrors[i] - min;
+	}
+
+	//Worst network
+	int worst = 0;
+	for (int i = 0; i < population_size; i++) {
+		if (networkErrors[i] > networkErrors[worst])
+			worst = i;
+	}
+	double max = 1 / mapedNetErrors[worst];
+	for (int i = 0; i < population_size; i++) {
+		mapedNetErrors[i] = mapedNetErrors[i]*max;
+	}
 }

@@ -9,6 +9,7 @@ class Population
 {
 	float mutation_rate; //in %
 	Red *child; 
+	double*mapedNetErrors;
 public:
 	int population_size;
 	Red* individus;
@@ -28,5 +29,6 @@ private:
 	void calculate_probability();
 	int get_parent();
 	Red reproduce(int parent1, int parent2);
+	void mapErrors();
 };
 #endif
