@@ -231,7 +231,6 @@ double Red::getAverage_error() {
 		tot += error[i];
 	}
 	tot = tot / error.size();
-	error.clear();
 	this->avgError = tot;
 	return (tot);
 }

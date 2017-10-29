@@ -6,7 +6,7 @@ Population::Population(int *structure, int size)
 {
 	this->population_size = size;
 	this->individus = new Red[size];
-	this->mutation_rate = 1; //(min 0.001)
+	this->mutation_rate = 0.1; //(min 0.001)
 	this->networkErrors = new double[size];
 	this->fitness = new double[size];
 	this->probability = new double[size];
@@ -43,6 +43,7 @@ void Population::evaluate(int nSamples,double** in, double** expected_result) {
 
 			this->individus[i].calculate_error(expected_result[s]);
 		}
+
 		networkErrors[i] = individus[i].getAverage_error();
 		fitness[i] = (1 - networkErrors[i])*(1 - networkErrors[i])*(1 - networkErrors[i]);
 		//mapErrors();
@@ -98,7 +99,7 @@ void Population::new_generation() {
 	int elite = getBestNetwork();
 	child[0].setGenes(individus[elite].getGenes());
 
-	for (int j = 1; j < population_size; j++) {
+	for (int i = 1; i < population_size; i++) {
 
 		int parent1 = get_parent();
 		int parent2 = get_parent();
@@ -107,10 +108,10 @@ void Population::new_generation() {
 			parent2 = get_parent();
 		} while (parent1 == parent2);
 
-		child[j] = reproduce(parent1, parent2);
+		child[i] = reproduce(parent1, parent2);
 	}
-	for (int j = 0; j < population_size; j++) {
-		individus[j].setGenes(child[j].getGenes());
+	for (int i = 0; i < population_size; i++) {
+		individus[i].setGenes(child[i].getGenes());
 	}
 }
 
