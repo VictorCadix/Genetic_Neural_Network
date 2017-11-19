@@ -6,16 +6,20 @@ Population::Population(int *structure, int size)
 {
 	this->population_size = size;
 	this->individus = new Red[size];
-	this->mutation_rate = 1;
+	this->mutation_rate = 0.1; //(min 0.001)
 	this->networkErrors = new double[size];
 	this->fitness = new double[size];
 	this->probability = new double[size];
+	this->child = new Red[population_size];
+	this->mapedNetErrors = new double[size];
 
 	for (int i = 0; i < this->population_size; i++)
 	{
 		this->individus[i] = Red(structure);
 		this->individus[i].setRandomGenes();
 		this->individus[i].genes2weights();
+
+		this->child[i] = Red(structure);
 	}
 }
 
@@ -42,6 +46,8 @@ void Population::evaluate(int nSamples,double** in, double** expected_result) {
 
 		networkErrors[i] = individus[i].getAverage_error();
 		fitness[i] = (1 - networkErrors[i])*(1 - networkErrors[i])*(1 - networkErrors[i]);
+		//mapErrors();
+		//fitness[i] = (1 - mapedNetErrors[i])*(1 - mapedNetErrors[i]);
 		calculate_probability();
 
 		#ifdef PRINTDEBUG 
@@ -85,5 +91,89 @@ int Population::get_parent() {
 		if (accum_prob >= target) {
 			return i;
 		}
+	}
+}
+
+void Population::new_generation() {
+
+	int elite = getBestNetwork();
+	child[0].setGenes(individus[elite].getGenes());
+
+	for (int i = 1; i < population_size; i++) {
+
+		int parent1 = get_parent();
+		int parent2 = get_parent();
+		do {
+			parent1 = get_parent();
+			parent2 = get_parent();
+		} while (parent1 == parent2);
+
+		child[i] = reproduce(parent1, parent2);
+	}
+	for (int i = 0; i < population_size; i++) {
+		individus[i].setGenes(child[i].getGenes());
+	}
+}
+
+Red Population::reproduce(int parent1, int parent2) {
+	
+	Red child(individus[parent1].structure);
+
+	int nLayers = individus[parent1].structure[0];
+
+	for (int i = 0; i < nLayers - 1; i++) {
+		for (int j = 0; j < individus[parent1].structure[i + 1] + 1; j++) {
+			for (int k = 0; k < individus[parent1].structure[i + 2]; k++) {
+				float random = rand() % 100000;
+				random = random / 1000;
+				if (mutation_rate > random) {
+					child.genes[i][j][k] = (double)(rand() % 200) / 100 - 1;
+				}
+				else if ((i + j + k) % 2 == 0) {
+					child.genes[i][j][k] = individus[parent1].genes[i][j][k];
+				}
+				else
+					child.genes[i][j][k] = individus[parent2].genes[i][j][k];
+			}
+		}
+	}
+	return child;
+}
+
+double Population::average_error() {
+	double sum = 0;
+	for (int i = 0; i < population_size; i++) {
+		sum += networkErrors[i];
+	}
+	sum = sum / population_size;
+	return sum;
+}
+
+int Population::getBestNetwork() {
+	int bestNetwork = 0;
+
+	for (int i = 0; i < population_size; i++) {
+		if (networkErrors[i] < networkErrors[bestNetwork])
+			bestNetwork = i;
+	}
+ 	return bestNetwork;
+}
+
+void Population::mapErrors() {
+	int best = getBestNetwork();
+	double min = networkErrors[best];
+	for (int i = 0; i < population_size; i++) {
+		mapedNetErrors[i] = networkErrors[i] - min;
+	}
+
+	//Worst network
+	int worst = 0;
+	for (int i = 0; i < population_size; i++) {
+		if (networkErrors[i] > networkErrors[worst])
+			worst = i;
+	}
+	double max = 1 / mapedNetErrors[worst];
+	for (int i = 0; i < population_size; i++) {
+		mapedNetErrors[i] = mapedNetErrors[i]*max;
 	}
 }
