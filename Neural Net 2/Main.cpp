@@ -53,6 +53,13 @@ void main(int argc, char* argv[]) {
 		training_output << population.average_error() << ",";
 		training_output << population.networkErrors[population.getBestNetwork()] << endl;
 
+		if (i == 0 || i == generations - 1)
+			population.print_results();
+		if (generations>100) {
+			if (i % (generations / 100) == 0)
+				cout << i / (generations / 100) << "% completed" << endl;
+		}
+
 		population.new_generation();
 	}
 
