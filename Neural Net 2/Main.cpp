@@ -40,7 +40,14 @@ void main(int argc, char* argv[]) {
 
 	for (int i = 0; i < generations; i++) {
 		population.evaluate(2, input, expected_result);
-		cout << population.average_error() << endl;
+
+		if (i == 0 || i == generations - 1)
+			population.print_results();
+		if (generations>100) {
+			if (i % (generations / 100) == 0)
+				cout << i / (generations / 100) << "% completed" << endl;
+		}
+
 		population.new_generation();
 	}
 
