@@ -55,6 +55,10 @@ Neurona::Neurona(int capa, int neurona,int nNeuronasCapaAnterior){
 	}
 }
 
+Neurona::~Neurona() {
+	delete[] pesos;
+}
+
 void Neurona::print(){
 	cout<<"Neurona: capa "<<this->posCapa<<" pos "<<this->posNeurona<<endl;
 	cout<<"Neuronas Capa anterior: "<<this->neuronasCapaAnterior<<endl;
