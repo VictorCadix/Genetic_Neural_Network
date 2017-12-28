@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <fstream>
 #include "Red.h"
 #include "Population.h"
 
@@ -9,6 +10,10 @@ using namespace std;
 
 void main(int argc, char* argv[]) {
 	srand((unsigned int)time(NULL));
+
+	//Files
+	ofstream training_output;
+	training_output.open("training_output.txt");
 
 	int structure[] = { 3,2,3,1 };
 	
@@ -41,6 +46,9 @@ void main(int argc, char* argv[]) {
 	for (int i = 0; i < generations; i++) {
 		population.evaluate(2, input, expected_result);
 
+		training_output << population.average_error() << ",";
+		training_output << population.networkErrors[population.getBestNetwork()] << endl;
+
 		if (i == 0 || i == generations - 1)
 			population.print_results();
 		if (generations>100) {
@@ -50,6 +58,8 @@ void main(int argc, char* argv[]) {
 
 		population.new_generation();
 	}
+
+	training_output.close();
 
 
 	if (argv[1] == NULL)
