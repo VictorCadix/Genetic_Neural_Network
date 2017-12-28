@@ -28,9 +28,9 @@ void main(int argc, char* argv[]) {
 	int cont = 0;
 
 	while (!feof(training_data)) {
-		char line[50];
+		char line[100];
 		char token;
-		fgets(line, 50, training_data);
+		fgets(line, 100, training_data);
 		sscanf(line, "%c", &token);
 		
 		if (token == '%') {
@@ -52,6 +52,7 @@ void main(int argc, char* argv[]) {
 		}
 		else {
 			sscanf(line, "%lf %lf %*c %lf", &input[cont][0], &input[cont][1], &expected_result[cont][0]);
+			cont++;
 		}
 	}
 	
