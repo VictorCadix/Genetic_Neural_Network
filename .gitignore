@@ -336,3 +336,4 @@ __pycache__/
 *.pdb
 *.log
 Neural Net 2/training_output.txt
+Neural Net 2/best_network.txt

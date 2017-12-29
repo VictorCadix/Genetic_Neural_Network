@@ -78,6 +78,31 @@ void main(int argc, char* argv[]) {
 
 	training_output.close();
 
+	ofstream best_network;
+	best_network.open("best_network.txt");
+	
+	int individu = population.getBestNetwork();
+	
+	best_network << "% Structure:" << endl;
+	best_network << "S";
+	for (int i = 0; i <= structure[0]; i++) {
+		best_network << " " << structure[i];
+	}
+
+	//Weights print
+	best_network << endl << "% Weights of the best network" << endl;
+
+	for (int i = 0; i < structure[0] - 1; i++) {
+		best_network << "% Weight matrix " << i + 1 << endl;
+		for (int j = 0; j < structure[i + 1] + 1; j++) { //[]+1 for bias
+			for (int k = 0; k < structure[i + 2]; k++) {
+				best_network << population.individus[individu].genes[i][j][k] << '\t';
+			}
+			best_network << endl;
+		}
+	}
+
+
 	for (int i = 0; i < total_data; i++) {
 		delete[] input[i];
 	}
