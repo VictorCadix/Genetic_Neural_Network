@@ -78,6 +78,14 @@ void main(int argc, char* argv[]) {
 
 	training_output.close();
 
+	for (int i = 0; i < total_data; i++) {
+		delete[] input[i];
+	}
+	delete[] input;
+	for (int i = 0; i < total_data; i++) {
+		delete[] expected_result[i];
+	}
+	delete[] expected_result;
 
 	if (argv[1] == NULL)
 	{
