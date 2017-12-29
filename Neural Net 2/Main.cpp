@@ -42,11 +42,11 @@ void main(int argc, char* argv[]) {
 			//Allocating memory for the input
 			input = new double *[total_data];
 			for (int i = 0; i < total_data; i++) {
-				input[i] = new double[2];
+				input[i] = new double[nInputs];
 			}
 			//Allocating memory for the output
 			expected_result = new double*[total_data];
-			for (int i = 0; i < 2; i++) {
+			for (int i = 0; i < total_data; i++) {
 				expected_result[i] = new double[nOutputs];
 			}
 		}
