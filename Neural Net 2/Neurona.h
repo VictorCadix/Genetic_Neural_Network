@@ -16,6 +16,7 @@ public:
 	//Neurona();
 	Neurona();
 	Neurona(int Capa, int Neurona, int nNeuronasCapaAnterior);
+	Neurona(const Neurona& rhs);
 	~Neurona();
 	void print();
 	void activate_sigmoid();
