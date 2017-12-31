@@ -151,7 +151,17 @@ Red& Red::operator = (const Red& rhs) {
 	return *this;
 }
 
+Red::~Red() {
 
+	delete[] result;
+	
+	for (int i = 0; i < this->nLayers - 1; i++) {
+		for (int j = 0; j < this->structure[i + 1] + 1; j++)
+			delete[] genes[i][j];
+		delete[] genes[i];
+	}
+	delete[] genes;
+}
 
 void Red::inputs(double *in){
 	#ifdef PRINTDEBUG 
