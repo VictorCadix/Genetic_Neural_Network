@@ -18,6 +18,7 @@ public:
 	double* probability;
 
 	Population(int* structure, int size);
+	~Population();
 	void inputs (double *in);
 	void evaluate(int nSamples, double** in, double** expected_result);
 	void print_results();
