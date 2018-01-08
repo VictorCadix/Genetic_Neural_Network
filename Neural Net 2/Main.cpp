@@ -5,6 +5,7 @@
 #include <fstream>
 #include "Red.h"
 #include "Population.h"
+#include "files.h"
 
 using namespace std;
 
@@ -23,39 +24,7 @@ void main(int argc, char* argv[]) {
 	double** input;
 	double** expected_result;
 	int total_data;
-	int nInputs;
-	int nOutputs;
-	int cont = 0;
-
-	while (!feof(training_data)) {
-		char line[100];
-		char token;
-		fgets(line, 100, training_data);
-		sscanf(line, "%c", &token);
-		
-		if (token == '%') {
-			//Its a comment
-		}
-		else if (token == '#') {
-			sscanf(line, "%c %d %*c %d %*c %d", &token, &total_data, &nInputs, &nOutputs);
-			
-			//Allocating memory for the input
-			input = new double *[total_data];
-			for (int i = 0; i < total_data; i++) {
-				input[i] = new double[nInputs];
-			}
-			//Allocating memory for the output
-			expected_result = new double*[total_data];
-			for (int i = 0; i < total_data; i++) {
-				expected_result[i] = new double[nOutputs];
-			}
-		}
-		else {
-			sscanf(line, "%lf %lf %*c %lf", &input[cont][0], &input[cont][1], &expected_result[cont][0]);
-			cont++;
-		}
-	}
-	
+	total_data = getTrainingData(training_data, input, expected_result);
 
 	Population population(structure, 10);
 	int generations = 10000;
