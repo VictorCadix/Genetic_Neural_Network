@@ -38,3 +38,28 @@ int getTrainingData(FILE* sourceFile, double** &input, double** &output) {
 	}
 	return (total_data);
 }
+
+void save_Network(string file_name, Red &red, int *structure) {
+	ofstream file;
+	file.open(file_name);
+	file << "% Structure:" << endl;
+	file << "S";
+	for (int i = 0; i <= structure[0]; i++) {
+		file << " " << structure[i];
+	}
+
+	//Weights print
+	file << endl << "% Weights of the best network" << endl;
+
+	for (int i = 0; i < structure[0] - 1; i++) {
+		file << "% Weight matrix " << i + 1 << endl;
+		for (int j = 0; j < structure[i + 1] + 1; j++) { //[]+1 for bias
+			for (int k = 0; k < structure[i + 2]; k++) {
+				file << red.genes[i][j][k] << '\t';
+			}
+			file << endl;
+		}
+	}
+
+	file.close();
+}
