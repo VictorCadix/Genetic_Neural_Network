@@ -50,7 +50,9 @@ void main(int argc, char* argv[]) {
 	
 	int best = population.getBestNetwork();
 	save_Network("best_network.txt", population.individus[best], structure);
-	
+
+	Red* red;
+	red = load_network("best_network.txt");
 
 	for (int i = 0; i < total_data; i++) {
 		delete[] input[i];
