@@ -12,7 +12,7 @@ class Red{
 public:
 	int nLayers;
 	int nNeuronas;
-	int *structure;
+	int *structure; // 1st -> nLayers // others -> nNeurons per layer (input -> hidden -> output)
 	double ***genes;
 	double avgError;
 	double *result;
