@@ -1,4 +1,4 @@
-# Neural_Network_github
+# Genetic_Neural_Network
 [![Build status](https://ci.appveyor.com/api/projects/status/ag67k7vs908ek79v?svg=true)](https://ci.appveyor.com/project/VictorCadix/neural-network-github)
 ## Presentation
 This repository is a work in progress project made by @VictorCadix and @Raul6469. It is an implementation of a neural network which will learn with a Darwinian algorithm.
