@@ -1,0 +1,8 @@
+% It's a comment
+% After the # comes the total number of data
+% number of lines / number of inputs / number of outputs  
+# 4 / 2 / 1
+0 0 = 0
+0 1 = 1
+1 0 = 1
+1 1 = 0

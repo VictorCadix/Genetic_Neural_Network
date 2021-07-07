@@ -83,6 +83,7 @@
     <ClCompile Include="Red.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="files.h" />
     <ClInclude Include="Neurona.h" />
     <ClInclude Include="Population.h" />
     <ClInclude Include="Red.h" />
