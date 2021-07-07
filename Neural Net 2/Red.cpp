@@ -59,6 +59,110 @@ Red::Red(int *structure_in) {
 	}
 }
 
+Red::Red(const Red& rhs) {
+	nLayers = rhs.nLayers;
+	nNeuronas = rhs.nNeuronas;
+	structure = rhs.structure;
+	avgError = rhs.avgError;
+	error = rhs.error;
+	layers = rhs.layers;
+	
+	if (rhs.result) {
+		result = new double[structure[nLayers]];
+		for (int i = 0; i < structure[nLayers]; i++) {
+			result[i] = rhs.result[i];
+		}
+	}
+	else
+		result = NULL;
+	
+	if (rhs.genes) {
+		this->genes = new double **[nLayers - 1];
+		for (int i = 0; i < this->nLayers - 1; i++) {
+			this->genes[i] = new double*[structure[i + 1] + 1]; //[]+1 for bias
+			for (int j = 0; j < this->structure[i + 1] + 1; j++) { //same
+				this->genes[i][j] = new double[structure[i + 2]];
+			}
+		}
+		for (int i = 0; i < this->nLayers - 1; i++) {
+			for (int j = 0; j < this->structure[i + 1] + 1; j++) { //[]+1 for bias
+				for (int k = 0; k < this->structure[i + 2]; k++) {
+					genes[i][j][k] = rhs.genes[i][j][k];
+				}
+			}
+		}
+	}
+	else
+		genes = NULL;
+}
+
+Red& Red::operator = (const Red& rhs) {
+	if (this == &rhs) //Check for self-assignment
+		return *this;
+
+	nLayers = rhs.nLayers;
+	nNeuronas = rhs.nNeuronas;
+	structure = rhs.structure;
+	avgError = rhs.avgError;
+	error = rhs.error;
+	layers = rhs.layers;
+
+	delete[] result;
+	//Deep copy of results
+	if (rhs.result) {
+		result = new double[structure[nLayers]];
+		for (int i = 0; i < structure[nLayers]; i++) {
+			result[i] = rhs.result[i];
+		}
+	}
+	else
+		result = NULL;
+
+	//Delete genes
+	if (genes) {
+		for (int i = 0; i < this->nLayers - 1; i++) {
+			for (int j = 0; j < this->structure[i + 1] + 1; j++)
+				delete[] genes[i][j];
+			delete[] genes[i];
+		}
+		delete[] genes;
+	}
+
+	//Deep copy of genes
+	if (rhs.genes) {
+		this->genes = new double **[nLayers - 1];
+		for (int i = 0; i < this->nLayers - 1; i++) {
+			this->genes[i] = new double*[structure[i + 1] + 1]; //[]+1 for bias
+			for (int j = 0; j < this->structure[i + 1] + 1; j++) { //same
+				this->genes[i][j] = new double[structure[i + 2]];
+			}
+		}
+		for (int i = 0; i < this->nLayers - 1; i++) {
+			for (int j = 0; j < this->structure[i + 1] + 1; j++) { //[]+1 for bias
+				for (int k = 0; k < this->structure[i + 2]; k++) {
+					genes[i][j][k] = rhs.genes[i][j][k];
+				}
+			}
+		}
+	}
+	else
+		genes = NULL;
+
+	return *this;
+}
+
+Red::~Red() {
+
+	delete[] result;
+	
+	for (int i = 0; i < this->nLayers - 1; i++) {
+		for (int j = 0; j < this->structure[i + 1] + 1; j++)
+			delete[] genes[i][j];
+		delete[] genes[i];
+	}
+	delete[] genes;
+}
+
 void Red::inputs(double *in){
 	#ifdef PRINTDEBUG 
 		cout<<endl<<"- Inputs -"<<endl;
@@ -132,7 +236,13 @@ double *** Red::getGenes() {
 }
 
 void Red::setGenes(double***genes) {
-	this->genes = genes;
+	for (int i = 0; i < this->nLayers - 1; i++) {
+		for (int j = 0; j < this->structure[i + 1] + 1; j++) { //[]+1 for bias
+			for (int k = 0; k < this->structure[i + 2]; k++) {
+				this->genes[i][j][k] = genes[i][j][k];
+			}
+		}
+	}
 }
 
 void Red::setRandomGenes() {

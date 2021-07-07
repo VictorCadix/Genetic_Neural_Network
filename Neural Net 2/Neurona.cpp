@@ -55,6 +55,27 @@ Neurona::Neurona(int capa, int neurona,int nNeuronasCapaAnterior){
 	}
 }
 
+
+Neurona::Neurona(const Neurona& rhs) {
+	valor = rhs.valor;
+	neuronasCapaAnterior = rhs.neuronasCapaAnterior;
+	posCapa = rhs.posCapa;
+	posNeurona = rhs.posNeurona;
+	if (rhs.pesos) {
+		pesos = new double[neuronasCapaAnterior + 1]; //+1 bias
+		for (int p = 0; p < this->neuronasCapaAnterior + 1; p++) {  //+1 bias
+			pesos[p] = rhs.pesos[p];
+		}
+	}
+	else
+		pesos = NULL;
+}
+
+
+Neurona::~Neurona() {
+	delete[] pesos;
+}
+
 void Neurona::print(){
 	cout<<"Neurona: capa "<<this->posCapa<<" pos "<<this->posNeurona<<endl;
 	cout<<"Neuronas Capa anterior: "<<this->neuronasCapaAnterior<<endl;

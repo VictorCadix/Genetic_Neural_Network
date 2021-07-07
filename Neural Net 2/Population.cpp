@@ -23,6 +23,15 @@ Population::Population(int *structure, int size)
 	}
 }
 
+Population::~Population() {
+	delete[] individus;
+	//delete[] child;
+	delete[] networkErrors;
+	delete[] fitness;
+	delete[] probability;
+	delete[] mapedNetErrors;
+}
+
 void Population::inputs(double *in) {
 	for (int i = 0; i < population_size; i++) {
 		this->individus[i].inputs(in);

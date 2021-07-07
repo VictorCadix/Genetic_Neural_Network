@@ -22,6 +22,9 @@ public:
 
 	Red();
 	Red(int *structure_in);
+	Red(const Red& rhs);
+	Red& operator = (const Red& rhs);
+	~Red();
 	void inputs(double *in);
 	void print(int mode = 0);
 	void geneForwardProp();
